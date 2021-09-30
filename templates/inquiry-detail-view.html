@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+<!-- style -->
+{% block head %}
+<style></style>
+{% endblock %}
+
+<!-- body -->
+{% block content %}
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-2"><a class="btn btn-outline-primary" href="{% url 'core:inquiry' %}">Go back</a></div>
+        <div class="col-10">
+            <h4>{{ object.first_name }}'s Inquiry</h4>
+            <p><b>To:</b> <br/>{{ object.user }}</p>
+            <p><b>From:</b> <br/>{{ object.first_name }} {{ object.last_name }}</p>
+            <p><b>Contact Email:</b> <br/>{{ object.email }}</p>
+            <p><b>Subject:</b> <br/>{{ object.subject }}</p>
+            <p><b>Message:</b> <br/>{{ object.message }}</p>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    header = document.querySelector('#header');
+    header.style.display = 'none';
+</script>
+
+{% endblock %}

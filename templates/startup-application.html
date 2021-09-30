@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+<!-- static -->
+{% load static %}
+
+<!-- style -->
+{% block head %}
+<style>
+    ul {
+        list-style-type: none;
+    }
+    
+    .required {
+        color: red;
+    }
+</style>
+{% endblock %}
+
+<!-- body -->
+{% block content %}
+
+
+<!-- ========== MAIN CONTENT ========== -->
+<main id="content" role="main">
+    <!-- Hero -->
+    <div class="bg-primary-dark position-relative pt-3 pt-md-0">
+        <div class="container">
+            <div class="
+            d-none d-md-block
+            col-md-6
+            position-absolute
+            top-0
+            end-0
+            bg-img-center
+            h-100
+          " style="background-image: url({% static 'assets/img/900x700/img6.jpg' %})"></div>
+            <div class="d-md-none mb-5 mb-md-0">
+                <img class="img-fluid" src="{% static 'assets/img/900x700/img2.jpg' %}" alt="Image Description" />
+            </div>
+
+            <div class="
+            row
+            align-items-lg-center
+            content-space-b-1 content-space-md-3
+          ">
+                <div class="col-md-8 col-lg-6">
+                    <!-- Heading -->
+                    <div class="pe-lg-3 mb-7">
+                        <h1 class="display-4 text-white">Startup Application</h1>
+                    </div>
+                    <!-- End Heading -->
+
+                    <a class="btn btn-primary" href="{% url 'core:contact' %}">Contact Us <i class="bi-chevron-right small ms-1"></i
+            ></a>
+                </div>
+                <!-- End Col -->
+
+                <div class="col-md-4 align-self-md-end position-relative z-1">
+                    <div class="d-none d-md-block transform-0" style="
+                margin-bottom: -12rem;
+                margin-left: -5rem;
+                margin-right: 10rem;
+              ">
+                        <img class="img-fluid" src="{% static 'assets/img/600x600/img1.jpg' %}" alt="Image Description" />
+                    </div>
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Row -->
+        </div>
+    </div>
+    <!-- End Hero -->
+
+    <!-- Features -->
+    <div class="
+        container
+        content-space-1 content-space-t-md-4 content-space-b-md-3
+      ">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-9 mb-3 mb-md-0">
+                <div class="pe-md-4">
+                    <!-- Card -->
+                    <div class="card card-lg">
+                        <!-- Card Body -->
+                        <div class="card-body">
+                            <form action="{% url 'core:register-startup' %}" method="POST">
+                                {% csrf_token %}
+                                <!-- form -->
+                                <div class="fieldWrapper mb-4">
+                                    {{ form.name.errors }}
+                                    <label class="form-label">Startup Name <span class="required">*</span></label> {{ form.name }}
+                                </div>
+
+                                <div class="fieldWrapper mb-4">
+                                    {{ form.web_address.errors }}
+                                    <label class="form-label">Web address/Pitch</label> {{ form.web_address }}
+                                </div>
+
+                                <div class="fieldWrapper mb-4">
+                                    {{ form.startup_pitch.errors }}
+                                    <label class="form-label">Pitch your startup in 140 words <span class="required">*</span></label> {{ form.startup_pitch }}
+                                </div>
+
+                                <div class="fieldWrapper mb-4">
+                                    {{ form.startup_stage.errors }}
+                                    <label class="form-label">Startup Stage <span class="required">*</span></label> {{ form.startup_stage }}
+                                </div>
+
+                                <div class="fieldWrapper row mb-4">
+                                    {{ form.start_year.errors }}{{ form.start_month.errors }}
+                                    <label class="form-label">When did you start? <span class="required">*</span></label>
+                                    <div class="col-sm-6">{{ form.start_year }}</div>
+                                    <div class="col-sm-6">{{ form.start_month }}</div>
+                                </div>
+
+                                <div class="fieldWrapper mb-4">
+                                    {{ form.incorporation.errors }}
+                                    <label class="form-label">Are you incorporated? (Leave blank if no) <span class="required">*</span></label> {{ form.incorporation }}
+                                </div>
+
+                                <div class="fieldWrapper row mb-4">
+                                    {{ form.country.errors }} {{ form.city.errors }}
+                                    <label class="form-label">Location<span class="required">*</span></label>
+                                    <div class="col-sm-6">
+                                        <label class="form-label">Country</label> {{ form.country }}
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="form-label">City</label> {{ form.city }}
+                                    </div>
+                                </div>
+
+                                <div class="fieldWrapper mb-4">
+                                    {{ form.applicant_title.errors }}
+                                    <label class="form-label">What is your title at the startup? <span class="required">*</span></label> {{ form.applicant_title }}
+                                </div>
+
+                                <div class="fieldWrapper mb-4">
+                                    {{ form.applicant_role.errors }}
+                                    <label class="form-label">What is your role at the startup? <span class="required">*</span></label> {{ form.applicant_role }}
+                                </div>
+
+                                <div class="fieldWrapper mb-4">
+                                    {{ form.applicant_bio.errors }}
+                                    <label class="form-label">Short bio / Describe yourself <span class="required">*</span></label> {{ form.applicant_bio }}
+                                </div>
+
+                                <div class="fieldWrapper mb-4">
+                                    {{ form.startup_elevator_pitch.errors }}
+                                    <label class="form-label">Startup Elevator Pitch <span class="required">*</span></label> {{ form.startup_elevator_pitch }}
+                                </div>
+
+                                <div class="fieldWrapper mb-4">
+                                    {{ form.motivation.errors }}
+                                    <label class="form-label">Why do you want to join this program? <span class="required">*</span></label> {{ form.motivation }}
+                                </div>
+
+                                <div class="d-grid">
+                                    <button class="btn btn-primary btn-lg" type="submit">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- End Card Body -->
+                    </div>
+                    <!-- End Card -->
+                </div>
+            </div>
+            <!-- End Col -->
+            <!-- End Col -->
+        </div>
+        <!-- End Row -->
+    </div>
+    <!-- End Features -->
+</main>
+<!-- ========== END MAIN CONTENT ========== -->
+
+{% endblock %}

@@ -1,0 +1,62 @@
+<html>
+
+<head>
+    <style>
+        .dashboard-nav {
+            /* background: #eeeeee; */
+        }
+        
+        .nav-link {
+            color: #000000;
+        }
+        
+        .active {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<!-- dashboard -->
+{% url 'core:dashboard' as dashboard_url %}
+<!-- active startup -->
+{% url 'core:active-startups' as active_startups_url %}
+<!-- pending startup -->
+{% url 'core:pending-startups' as pending_startups_url %}
+<!-- declined startup -->
+{% url 'core:declined-startups' as declined_startups_url %}
+<!-- active investors -->
+{% url 'core:active-investors' as active_investors_url %}
+<!-- pending investors -->
+{% url 'core:pending-investors' as pending_investors_url %}
+<!-- declined investors -->
+{% url 'core:declined-investors' as declined_investors_url %}
+<!-- inquiry -->
+{% url 'core:inquiry' as inquiry_url %}
+<!-- logout -->
+{% url 'core:logout' as logout_url %}
+
+
+<div class="container dashboard-nav">
+    <nav class="nav flex-column">
+        <a class="nav-link {% if request.path == dashboard_url %} active {% endif %}" href="{{ dashboard_url }}">Dashboard</a>
+        <hr>
+        <a class="nav-link">STARTUPS</a>
+        <hr>
+        <a class="nav-link {% if request.path == pending_startups_url %} active {% endif %}" href="{{ pending_startups_url }}">Pending</a>
+        <a class="nav-link {% if request.path == active_startups_url %} active {% endif %}" href="{{ active_startups_url }}">Active</a>
+        <a class="nav-link {% if request.path == declined_startups_url %} active {% endif %}" href="{{ declined_startups_url }}">Declined</a>
+        <hr>
+        <a class="nav-link">INVESTORS</a>
+        <hr>
+        <a class="nav-link {% if request.path == pending_investors_url %} active {% endif %}" href="{{ pending_investors_url }}">Pending</a>
+        <a class="nav-link {% if request.path == active_investors_url %} active {% endif %}" href="{{ active_investors_url }}">Active</a>
+        <a class="nav-link {% if request.path == declined_investors_url %} active {% endif %}" href="{{ declined_investors_url }}">Declined</a>
+        <hr>
+        <a class="nav-link">INQUIRIES</a>
+        <hr>
+        <a class="nav-link {% if request.path == inquiry_url %} active {% endif %}" href="{{ inquiry_url }}">Inquiries</a>
+        <hr>
+        <a class="nav-link {% if request.path == logout_url %} active {% endif %}" href="{{ logout_url }}">Logout</a>
+    </nav>
+</div>
+
+</html>

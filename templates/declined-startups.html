@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+<!-- style -->
+{% block head %}
+<style></style>
+{% endblock %}
+
+<!-- body -->
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-3">{% include 'dashboard-nav.html' %}</div>
+        <div class="col-9">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Startup Name</th>
+                        <th scope="col">Contact Name</th>
+                        <th scope="col">Contact Email</th>
+                        <th scope="col">Location</th>
+                        <th scope="col">Application Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for object in object_list %}
+                    <tr>
+                        <th scope="row">{{ forloop.counter }}</th>
+                        <td>{{ object.name }}</td>
+                        <td>{{ object.applicant_first_name }} {{ object.applicant_last_name }}</td>
+                        <td>{{ object.applicant_email }}</td>
+                        <td>{{ object.city }}, {{ object.country }}</td>
+                        <td>{{ object.application_date }}</td>
+                        <td><a href="{{ object.get_absolute_url }}">View</a></td>
+                        <td><a href="{{ object.get_update_startup_url }}">Edit</a></td>
+                        <td><a href="{{ object.get_delete_startup_url }}" class="del-link">Del</a></td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <!-- alert -->
+                        <div class="container mt-4">
+                            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                No investors yet
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        </div>
+
+                        <br>
+                        <a href="{% url 'core:declined-startups' %}">Back</a>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    header = document.querySelector('#header');
+    header.style.display = 'none';
+</script>
+
+{% endblock %}

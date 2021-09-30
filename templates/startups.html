@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+<!-- style -->
+{% load static %}
+
+<!-- style -->
+{% block head %}
+<style>
+
+</style>
+{% endblock %}
+
+<!-- body -->
+{% block content %}
+
+<main id="content" role="main">
+    <!-- Hero -->
+    <div class="bg-primary-dark position-relative pt-3 pt-md-0">
+        <div class="container">
+            <div class="
+            d-none d-md-block
+            col-md-6
+            position-absolute
+            top-0
+            end-0
+            bg-img-center
+            h-100
+          " style="background-image: url({% static 'assets/img/900x700/img6.jpg' %})"></div>
+            <div class="d-md-none mb-5 mb-md-0">
+                <img class="img-fluid" src="{% static 'assets/img/900x700/img2.jpg' %}" alt="Image Description" />
+            </div>
+
+            <div class="
+            row
+            align-items-lg-center
+            content-space-b-1 content-space-md-3
+          ">
+                <div class="col-md-8 col-lg-6">
+                    <!-- Heading -->
+                    <div class="pe-lg-3 mb-7">
+                        <h1 class="display-4 text-white">
+                            Some of Our
+                            <span class="text-warning">Startups</span>
+                        </h1>
+                    </div>
+                    <!-- End Heading -->
+
+                    <a class="btn btn-primary" href="{% url 'core:contact' %}">Contact Us <i class="bi-chevron-right small ms-1"></i
+            ></a>
+                </div>
+                <!-- End Col -->
+
+                <div class="col-md-4 align-self-md-end position-relative z-1">
+                    <div class="d-none d-md-block transform-0" style="
+                margin-bottom: -12rem;
+                margin-left: -5rem;
+                margin-right: 10rem;
+              ">
+                        <img class="img-fluid" src="{% static 'assets/img/600x600/img1.jpg' %}" alt="Image Description" />
+                    </div>
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Row -->
+        </div>
+    </div>
+    <!-- End Hero -->
+
+    <!-- Features -->
+    <div class="
+        container
+        content-space-1 content-space-t-md-4 content-space-b-md-3
+      ">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-md-8 mb-3 mb-md-0">
+                <div class="pe-md-4">
+                    <p>
+                        Interested at working at one of these companies?
+                        <a href="{% url 'core:contact' %}">Send us a resume and portfolio</a>
+                    </p>
+                </div>
+            </div>
+            <!-- End Col -->
+            <!-- End Col -->
+        </div>
+        <!-- End Row -->
+    </div>
+    <!-- End Features -->
+
+    <!-- FAQ -->
+    <div class="container-fluid mb-5">
+        <div class="w-md-75 w-lg-65 mx-md-auto">
+            <!-- Card -->
+            <div class="bg-white rounded shadow-sm">
+                <div class="container content-space-b-1 content-space-t-2">
+                    <div class="row mb-3">
+                        <div class="col py-3">
+                            <img class="avatar avatar-xl avatar-4x3" src="{% static 'assets/svg/brands/capsule-primary.svg' %}" alt="Logo" />
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col py-3">
+                            <img class="avatar avatar-xl avatar-4x3" src="{% static 'assets/svg/brands/fitbit-primary.svg' %}" alt="Logo" />
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col py-3">
+                            <img class="avatar avatar-xl avatar-4x3" src="{% static 'assets/svg/brands/hubspot-primary.svg' %}" alt="Logo" />
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col py-3">
+                            <img class="avatar avatar-xl avatar-4x3" src="{% static 'assets/svg/brands/embark-primary.svg' %}" alt="Logo" />
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col py-3">
+                            <img class="avatar avatar-xl avatar-4x3" src="{% static 'assets/svg/brands/kaplan-primary.svg' %}" alt="Logo" />
+                        </div>
+                        <!-- End Col -->
+                    </div>
+                    <!-- End Row -->
+
+                    <div class="row">
+                        <div class="col py-3">
+                            <img class="avatar avatar-xl avatar-4x3" src="{% static 'assets/svg/brands/layar-primary.svg' %}" alt="Logo" />
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col py-3">
+                            <img class="avatar avatar-xl avatar-4x3" src="{% static 'assets/svg/brands/shopify-primary.svg' %}" alt="Logo" />
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col py-3">
+                            <img class="avatar avatar-xl avatar-4x3" src="{% static 'assets/svg/brands/embark-primary.svg' %}" alt="Logo" />
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col py-3">
+                            <img class="avatar avatar-xl avatar-4x3" src="{% static 'assets/svg/brands/hubspot-primary.svg' %}" alt="Logo" />
+                        </div>
+                        <!-- End Col -->
+
+                        <div class="col py-3">
+                            <img class="avatar avatar-xl avatar-4x3" src="{% static 'assets/svg/brands/business-insider-primary.svg ' %}" alt="Logo" />
+                        </div>
+                        <!-- End Col -->
+                    </div>
+                    <!-- End Row -->
+                </div>
+            </div>
+            <!-- End Card -->
+        </div>
+    </div>
+    <!-- End FAQ -->
+</main>
+
+{% endblock %}

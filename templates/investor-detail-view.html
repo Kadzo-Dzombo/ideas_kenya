@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+<!-- style -->
+{% block head %}
+<style>
+    .title {
+        font-weight: bolder;
+    }
+    
+    .edit-status-modal a {
+        float: right;
+    }
+</style>
+{% endblock %}
+
+<!-- body -->
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {% if object.status == 'Pending' %}
+            <p>Status: <span class="badge bg-warning text-dark">Pending</span></p>
+            {% elif object.status == 'Approved' %}
+            <p>Status: <span class="badge bg-success">Approved</span></p>
+            {% elif object.status == 'Declined' %}
+            <p>Status: <span class="badge bg-danger">Declined</span></p>
+            {% else %}
+            <p>Status: <span class="badge bg-warning text-dark">Pending</span></p>
+            {% endif %}
+        </div>
+        <div class="col edit-status-modal">
+            <a href="{{ object.get_update_investor_url }}" class="link">Edit Investor</a>
+        </div>
+        <hr>
+    </div>
+    <div class="row align-items-center justify-content-center">
+
+        <div class="col-4">
+            <h4>{{ object.name }} {{ object.surname }}</h4>
+            <p><b>Type of investor:</b> <br/>{{ object.investor_type }}</p>
+            {% if object.linkedin_address %}
+            <p><a>{{ object.linkedin_address }}</a></p>
+            {% endif %}
+            <p><b>Application Date:</b> <br/>{{ object.application_date }}</p>
+
+            <h6>Contact Information</h6>
+            <p><b>Email:</b> <br/>{{ object.email }}</p>
+            <p><b>Location:</b> <br/>{{ object.city }}, {{ object.country }}</p>
+
+        </div>
+        <div class="col-8">
+            <p class="title">Investor Bio</p>
+            <p>{{ object.bio }}</p>
+            <p class="title">Investor's Experience</p>
+            <p>{{ object.experience }}</p>
+            <p class="title">Reason for participating in the program</p>
+            <p>{{ object.reason }}</p>
+        </div>
+
+
+    </div>
+    <br>
+    <p><a class="btn btn-outline-primary" href="{% url 'core:dashboard' %}">Back to Dashboard</a></p>
+</div>
+
+<script>
+    header = document.querySelector('#header');
+    header.style.display = 'none';
+</script>
+
+{% endblock %}

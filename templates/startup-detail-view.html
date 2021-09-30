@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+
+<!-- style -->
+{% block head %}
+<style>
+    .title {
+        font-weight: bolder;
+    }
+    
+    img {
+        width: 100%;
+    }
+    
+    .startup-info {
+        display: flex;
+        justify-content: space-evenly;
+    }
+    
+    .edit-status-modal a {
+        float: right;
+    }
+</style>
+{% endblock %}
+
+<!-- body -->
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            {% if object.status == 'Pending' %}
+            <p>Status: <span class="badge bg-warning text-dark">Pending</span></p>
+            {% elif object.status == 'Approved' %}
+            <p>Status: <span class="badge bg-success">Approved</span></p>
+            {% elif object.status == 'Declined' %}
+            <p>Status: <span class="badge bg-danger">Declined</span></p>
+            {% else %}
+            <p>Status: <span class="badge bg-warning text-dark">Pending</span></p>
+            {% endif %}
+        </div>
+        <div class="col edit-status-modal">
+            <a href="{{ object.get_update_startup_url }}" class="link">Edit Startup</a>
+        </div>
+        <hr>
+    </div>
+    <div class="row align-items-center justify-content-center">
+        <div class="startup-info">
+            <div class="col-4">
+                <h4>{{ object.name }}</h4>
+                {% if object.web_address %}
+                <p><a>{{ object.web_address }}</a></p>
+                {% endif %}
+                <p>Founded in {{ object.start_month }}, {{ object.start_year }} at {{ object.city }}, {{ object.country }}</p>
+                <p><b>Incorporated:</b> <br/>{{ object.incorporation }}</p>
+
+                <h6>CONTACT INFO</h6>
+                <p><b>Applicant:</b> <br/>{{ object.applicant_first_name }} {{ object.applicant_last_name }}, {{ object.applicant_title }} at {{ object.name }}</p>
+                <p><b>Email:</b> <br/>{{ object.applicant_email }}</p>
+                <p><b>Phone No:</b> <br/>+{{ object.applicant_phone_no }}</p>
+
+            </div>
+
+            <div class="col-8">
+                <p class="title">Applicant Bio</p>
+                <p><b>Email:</b> <br/>{{ object.applicant_bio }}</p>
+                <p class="title">Startup Pitch</p>
+                <p>{{ object.startup_pitch }}</p>
+                <p class="title">Startup Elevator Pitch</p>
+                <p>{{ object.startup_elevator_pitch }}</p>
+                <p class="title">Reason for participating in the program</p>
+                <p>{{ object.motivation }}</p>
+            </div>
+
+        </div>
+    </div>
+    <br>
+    <p><a class="btn btn-outline-primary" href="{% url 'core:dashboard' %}">Back to Dashboard</a></p>
+
+</div>
+
+<script>
+    header = document.querySelector('#header');
+    header.style.display = 'none';
+</script>
+
+{% endblock %}

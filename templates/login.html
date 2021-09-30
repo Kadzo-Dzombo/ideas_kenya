@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+<!-- style -->
+{% block head %}
+<style>
+    input[type=text],
+    input[type=password] {
+        width: 40%;
+    }
+    
+    .login-pg {
+        padding: 2em;
+    }
+</style>
+{% endblock %}
+
+<!-- body -->
+{% block content %}
+
+<div class="container login-pg">
+    <h4>Login</h4>
+    <form method="POST" action="{% url 'core:login' %}">
+        {% csrf_token %}
+        <div class="username">
+            <span class="errorMsg">{{ form.username.errors }}</span> {{ form.username }}<br>
+        </div>
+        <div class="password">
+            <span class="errorMsg">{{ form.password.errors }}</span> {{ form.password }}<br>
+        </div>
+        <button class="btn btn-primary">Sign In</button>
+    </form>
+
+</div>
+
+<script>
+    header = document.querySelector('#header');
+    header.style.display = 'none';
+</script>
+
+{% endblock %}

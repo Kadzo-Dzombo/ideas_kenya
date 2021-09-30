@@ -1,0 +1,90 @@
+{% load static %}
+<!-- ========== HEADER ========== -->
+<header id="header" class="navbar navbar-expand-lg navbar-light navbar-right bg-white">
+    <div class="container">
+        <nav class="js-mega-menu navbar-nav-wrap">
+            <!-- Default Logo -->
+            <a class="navbar-brand" href="{% url 'core:home' %}" aria-label="Space">
+                <img class="navbar-brand-logo" src="{% static '/assets/svg/logos/logo.svg' %}" alt="Ideas Kenya" />
+            </a>
+            <!-- End Default Logo -->
+
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-default">
+              <i class="bi-list"></i>
+            </span>
+            <span class="navbar-toggler-toggled">
+              <i class="bi-x"></i>
+            </span>
+          </button>
+            <!-- End Toggler -->
+
+            <!-- Collapse -->
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <!-- Intro -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'core:home' %}">Intro</a>
+                    </li>
+                    <!-- End Intro -->
+
+                    <!-- Who we Are -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'core:about' %}">Who we are</a>
+                    </li>
+                    <!-- End Who we Are -->
+
+                    <!-- How we can help -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'core:help' %}">How we can help</a>
+                    </li>
+                    <!-- End How we can help -->
+
+                    <!-- Startups -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'core:startups' %}">Our Startups</a>
+                    </li>
+                    <!-- End Startups -->
+
+                    <!-- What Interests Us -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'core:interests' %}">What Interests Us</a>
+                    </li>
+                    <!-- End What Interests Us -->
+
+                    <li class="nav-divider"></li>
+
+                    <!-- Investors -->
+                    <li class="nav-item">
+                        <a class="
+                    js-animation-link
+                    btn btn-ghost-secondary btn-no-focus
+                    me-2 me-lg-0
+                  " href="{% url 'core:register-investor' %}">Investors</a
+                >
+              </li>
+              <!-- End Investors -->
+
+              <!-- Startups -->
+              <li class="nav-item">
+                <a
+                  class="
+                    js-animation-link
+                    d-none d-lg-inline-block
+                    btn btn-primary
+                  "
+                  href="{% url 'core:register-startup' %}"
+                >
+                  <i class="bi-person-circle me-1"></i> Startups
+                </a>
+                    </li>
+                    <!-- End Startups -->
+                </ul>
+            </div>
+            <!-- End Collapse -->
+        </nav>
+    </div>
+</header>
+
+<!-- ========== END HEADER ========== -->
