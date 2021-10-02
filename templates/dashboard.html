@@ -62,17 +62,17 @@
 
                 <div class="col-4">
                     <h6>Investors</h6>
-                    <a href="{% url 'core:active-startups' %}">
+                    <a href="{% url 'core:active-investors' %}">
                         <div class="card bg-light mb-3" style="max-width: 18rem;">
                             {{ active_investor_count }} Active
                         </div>
                     </a>
-                    <a href="{% url 'core:active-startups' %}">
+                    <a href="{% url 'core:pending-investors' %}">
                         <div class="card bg-light mb-3" style="max-width: 18rem;">
                             {{ pending_investor_count }} Pending
                         </div>
                     </a>
-                    <a href="{% url 'core:active-startups' %}">
+                    <a href="{% url 'core:declined-investors' %}">
                         <div class="card bg-light mb-3" style="max-width: 18rem;">
                             {{ declined_investor_count }} Declined
                         </div>

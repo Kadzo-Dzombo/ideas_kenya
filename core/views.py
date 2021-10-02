@@ -2,8 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404, Http404
 from .forms import (
     LoginForm, ContactForm,
     StartupModelForm, InvestorModelForm,
-    StartupEditForm, InvestorEditForm,
-    EditStartupStatusForm
+    StartupEditForm, InvestorEditForm
 )
 from .models import Startup, Investor, Contact
 from django.contrib import messages

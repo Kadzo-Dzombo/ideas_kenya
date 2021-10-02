@@ -44,12 +44,28 @@ class StartupEditForm(ModelForm):
         model = Startup
         fields = '__all__'
         exclude = ['slug']
-
-
-class EditStartupStatusForm(ModelForm):
-    class Meta:
-        model = Startup
-        fields = ['status']
+        widgets = {
+            'name': TextInput(attrs={'class': 'form-control'}),
+            'web_address': TextInput(attrs={'class': 'form-control'}),
+            'startup_pitch': Textarea(attrs={'cols': 10, 'rows': 3, 'class': 'form-control'}),
+            'startup_stage': Select(attrs={'class': 'form-control'}),
+            'start_month': Select(attrs={'class': 'form-control'}),
+            'start_year': Select(attrs={'class': 'form-control'}),
+            # 'incorporation': CheckboxInput(attrs={'class': 'form-control'}),
+            'country': TextInput(attrs={'class': 'form-control'}),
+            'city': TextInput(attrs={'class': 'form-control'}),
+            'applicant_title': TextInput(attrs={'class': 'form-control'}),
+            'applicant_role': Select(attrs={'class': 'form-control'}),
+            'applicant_first_name': TextInput(attrs={'class': 'form-control'}),
+            'applicant_last_name': TextInput(attrs={'class': 'form-control'}),
+            'applicant_email': TextInput(attrs={'class': 'form-control'}),
+            'applicant_phone_no': TextInput(attrs={'class': 'form-control'}),
+            'linkedin_account': TextInput(attrs={'class': 'form-control'}),
+            'applicant_bio': Textarea(attrs={'cols': 10, 'rows': 3, 'class': 'form-control'}),
+            'startup_elevator_pitch': Textarea(attrs={'cols': 10, 'rows': 3, 'class': 'form-control'}),
+            'motivation': Textarea(attrs={'cols': 10, 'rows': 3, 'class': 'form-control'}),
+            'status': Select(attrs={'class': 'form-control'})
+        }
 
 
 class InvestorModelForm(ModelForm):
@@ -78,6 +94,21 @@ class InvestorEditForm(ModelForm):
         model = Investor
         fields = '__all__'
         exclude = ['slug']
+        widgets = {
+            'investor_type': Select(attrs={'class': 'form-control'}),
+            'name': TextInput(attrs={'class': 'form-control'}),
+            'surname': TextInput(attrs={'class': 'form-control'}),
+            'email': TextInput(attrs={'class': 'form-control'}),
+            'linkedin_address': TextInput(attrs={'class': 'form-control'}),
+            'country': TextInput(attrs={'class': 'form-control'}),
+            'city': TextInput(attrs={'class': 'form-control'}),
+            'employment_status': TextInput(attrs={'class': 'form-control'}),
+            'title': TextInput(attrs={'class': 'form-control', 'placeholder': 'e.g CEO'}),
+            'bio': Textarea(attrs={'cols': 10, 'rows': 3, 'class': 'form-control'}),
+            'experience': Textarea(attrs={'cols': 10, 'rows': 3, 'class': 'form-control'}),
+            'reason': Textarea(attrs={'cols': 10, 'rows': 3, 'class': 'form-control'}),
+            'status': Select(attrs={'class': 'form-control'})
+        }
 
 
 class ContactForm(ModelForm):

@@ -3,10 +3,7 @@
 <!-- style -->
 {% block head %}
 <style>
-    input[type=text],
-    input[type=password] {
-        width: 40%;
-    }
+
 </style>
 {% endblock %}
 
@@ -14,17 +11,18 @@
 {% block content %}
 
 <div class="container">
-    <h2>Update Startup</h2>
-    <form method="POST" action="{{ object.get_update_startup_url }}">
-        {% csrf_token %}
-        <!-- form -->
-        {{ form.as_p }}
-        <button class="btn btn-primary">Update</button>
-    </form>
-
-    <br>
-    <p><a href="{{ object.get_absolute_url }}">Go Back</a></p>
-
+    <div class="row mb-4">
+        <div class="col-2"><a href="{{ object.get_absolute_url }}">Go Back</a></div>
+        <div class="col-10 form-section">
+            <h4>Update Startup</h4>
+            <form method="POST" action="{{ object.get_update_startup_url }}">
+                {% csrf_token %}
+                <!-- form -->
+                {{ form.as_p }}
+                <button class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
 </div>
 
 <script>
