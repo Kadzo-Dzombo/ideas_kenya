@@ -9,7 +9,8 @@ from .views import (
     ActiveStartups, PendingStartups, DeclinedStartups,
     ActiveInvestors, PendingInvestors, DeclinedInvestors,
     contact_page, Inquiries, InquiryDetailView, delete_inquiry,
-    our_startups, about_us, help_page, interests, intro
+    our_startups, about_us, help_page, interests, intro,
+    startup_approved, startup_declined, investor_approved, investor_declined
 )
 
 app_name = 'core'
@@ -44,5 +45,10 @@ urlpatterns = [
     path('admin/investor/update/<slug>', investorUpdateView, name='update-investor'),
     path('admin/investor/<slug>/', InvestorDetailView.as_view(), name='investor-detail-view'),
     path('admin/investor/<slug>/delete/', delete_investor, name="delete-investor"),
+    # status updates
+    path('admin/startup/approve/<slug>', startup_approved, name='startup-approved'),
+    path('admin/startup/decline/<slug>', startup_declined, name='startup-declined'),
+    path('admin/investor/approve/<slug>', investor_approved, name='investor_approved'),
+    path('admin/investor/decline/<slug>', investor_declined, name='investor_declined')
     
 ]

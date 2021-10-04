@@ -114,6 +114,40 @@ class InvestorDetailView(DetailView):
     model = Investor
     template_name = 'investor-detail-view.html'
 
+
+# status update views
+def startup_approved(request, slug):
+    startup_object = get_object_or_404(Startup, slug=slug)
+    startup_object.status = 'Approved'
+    startup_object.save()
+    messages.success(request, 'Status updated successfully')
+    return redirect('/admin/startups/active/')
+
+
+def startup_declined(request, slug):
+    startup_object = get_object_or_404(Startup, slug=slug)
+    startup_object.status = 'Declined'
+    startup_object.save()
+    messages.success(request, 'Status updated successfully')
+    return redirect('/admin/startups/declined/')
+
+
+def investor_approved(request, slug):
+    investor = get_object_or_404(Investor, slug=slug)
+    investor.status = 'Approved'
+    investor.save()
+    messages.success(request, 'Status updated successfully')
+    return redirect('/admin/investors/active/')
+
+
+def investor_declined(request, slug):
+    investor = get_object_or_404(Investor, slug=slug)
+    investor.status = 'Declined'
+    investor.save()
+    messages.success(request, 'Status updated successfully')
+    return redirect('/admin/investors/declined/')
+
+
 # object update views
 
 def startupUpdateView(request, slug):

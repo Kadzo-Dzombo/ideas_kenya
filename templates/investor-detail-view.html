@@ -58,10 +58,20 @@
             <p>{{ object.reason }}</p>
         </div>
 
-
     </div>
-    <br>
-    <p><a class="btn btn-outline-primary" href="{% url 'core:dashboard' %}">Back to Dashboard</a></p>
+
+    <div class="row mb-4">
+        <div class="col-4"><a class="btn btn-outline-primary" href="{% url 'core:dashboard' %}">Back to Dashboard</a></div>
+        {% if object.status == 'Pending' %}
+        <div class="col-4"><a class="btn btn-primary" href="{{ object.get_approve_investor_url }}">Mark as Approved</a></div>
+        <div class="col-4"><a class="btn btn-danger" href="{{ object.get_declined_investor_url }}">Mark as Declined</a></div>
+        {% elif object.status == 'Approved' %}
+        <div class="col-4"><a class="btn btn-danger" href="{{ object.get_declined_investor_url }}">Mark as Declined</a></div>
+        {% else %}
+        <div class="col-4"><a class="btn btn-primary" href="{{ object.get_approve_investor_url }}">Mark as Approved</a></div>
+        {% endif %}
+    </div>
+
 </div>
 
 <script>

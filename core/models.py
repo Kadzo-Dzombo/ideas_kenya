@@ -139,6 +139,12 @@ class Startup(models.Model):
     def get_delete_startup_url(self):
         return reverse('core:delete-startup', kwargs={'slug': self.slug})
 
+    def get_approve_startup_url(self):
+        return reverse('core:startup-approved', kwargs={'slug': self.slug})
+
+    def get_decline_startup_url(self):
+        return reverse('core:startup-declined', kwargs={'slug': self.slug})
+
 
 class Investor(models.Model):
     investor_type = models.CharField(max_length=100, choices=INVESTOR_TYPE)
@@ -168,6 +174,12 @@ class Investor(models.Model):
 
     def get_delete_investor_url(self):
         return reverse('core:delete-investor', kwargs={'slug': self.slug})
+
+    def get_approve_investor_url(self):
+        return reverse('core:investor_approved', kwargs={'slug': self.slug})
+
+    def get_declined_investor_url(self):
+        return reverse('core:investor_declined', kwargs={'slug': self.slug})
 
 
 class Contact(models.Model):
