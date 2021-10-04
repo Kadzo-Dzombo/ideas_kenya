@@ -182,6 +182,11 @@ class Investor(models.Model):
         return reverse('core:investor_declined', kwargs={'slug': self.slug})
 
 
+class MailList(models.Model):
+    name = models.CharField(max_length=200)
+    email = models.CharField(max_length=300)
+
+
 class Contact(models.Model):
     user = models.CharField(choices=CONTACT_USER, max_length=100)
     slug = models.SlugField(blank=True, null=True)

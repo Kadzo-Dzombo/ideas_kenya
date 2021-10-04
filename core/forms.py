@@ -1,11 +1,21 @@
 from django import forms
 from django.forms import ModelForm, Textarea, TextInput, Select, CheckboxInput
 from django.utils.translation import gettext_lazy as _
-from .models import Startup, Investor, Contact
+from .models import Startup, Investor, Contact, MailList
 
 class LoginForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Username'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Password'}))
+
+
+class MailListForm(ModelForm):
+    class Meta:
+        model = MailList
+        fields = '__all__'
+        widgets = {
+            'name': TextInput(attrs={'class': 'form-control form-control-lg', 'placeholder': 'Type your name'}),
+            'email': TextInput(attrs={'class': 'form-control', 'placeholder': 'example@site.com'}),
+        }
 
 
 class StartupModelForm(ModelForm):

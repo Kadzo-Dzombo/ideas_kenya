@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect, get_object_or_404, Http404
+import csv
+from django.shortcuts import render, redirect, get_object_or_404, Http404, HttpResponse
 from .forms import (
     LoginForm, ContactForm,
     StartupModelForm, InvestorModelForm,
-    StartupEditForm, InvestorEditForm
+    StartupEditForm, InvestorEditForm, MailListForm
 )
-from .models import Startup, Investor, Contact
+from .models import Startup, Investor, Contact, MailList
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, get_user_model
 from django.views.generic import DetailView, ListView
@@ -12,7 +13,12 @@ from django.views.generic import DetailView, ListView
 User = get_user_model()
 
 def landing_page(request):
-    return render(request, 'index.html', {})
+    form = MailListForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'You have successfully subscribed to our newsletter')
+        return redirect('/')
+    return render(request, 'index.html', {'form': form})
 
 
 def our_startups(request):
@@ -260,3 +266,23 @@ class DeclinedInvestors(ListView):
     model = Investor
     queryset = Investor.objects.filter(status='Declined')
     template_name = 'declined-investors.html'
+
+
+# export mail list
+class MailList(ListView):
+    model = MailList
+    template_name = 'mail-list.html'
+
+
+def export_mail_list(request):
+    response = HttpResponse(content_type='text/csv')
+
+    writer = csv.writer(response)
+    writer.writerow(['Name', 'Email'])
+
+    for receipient in MailList.objects.all().values_list('name', 'email'):
+        writer.writerow(receipient)
+
+    response['Content-Disposition'] = 'attachment; filename="mail-list.csv"'
+
+    return response

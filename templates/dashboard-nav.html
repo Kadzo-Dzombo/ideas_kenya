@@ -31,6 +31,8 @@
 {% url 'core:declined-investors' as declined_investors_url %}
 <!-- inquiry -->
 {% url 'core:inquiry' as inquiry_url %}
+<!-- inquiry -->
+{% url 'core:mail-list' as mail_list_url %}
 <!-- logout -->
 {% url 'core:logout' as logout_url %}
 
@@ -54,6 +56,10 @@
         <a class="nav-link">INQUIRIES</a>
         <hr>
         <a class="nav-link {% if request.path == inquiry_url %} active {% endif %}" href="{{ inquiry_url }}">Inquiries</a>
+        <hr>
+        <a class="nav-link">MAILLIST</a>
+        <hr>
+        <a class="nav-link {% if request.path == mail_list_url %} active {% endif %}" href="{{ mail_list_url }}">MailList</a>
         <hr>
         <a class="nav-link {% if request.path == logout_url %} active {% endif %}" href="{{ logout_url }}">Logout</a>
     </nav>

@@ -3,7 +3,6 @@
 {% load static %}
 
 <!-- style -->
-<!-- style -->
 {% block head %}
 <style>
 
@@ -131,41 +130,21 @@
                                 </div>
                                 <!-- End Row -->
 
-                                <form>
+                                <form method="POST" action="{% url 'core:home' %}">
+                                  {% csrf_token %}
                                     <!-- Form -->
-                                    <div class="mb-4">
-                                        <label class="form-label" for="registerEmail">Your name</label
-                      >
-                      <input
-                        type="text"
-                        class="form-control form-control-lg"
-                        name="name"
-                        id="registerName"
-                        placeholder="Type your name"
-                        aria-label="Type your name"
-                        required
-                        data-msg="Please enter your name."
-                      />
-                    </div>
-                    <!-- End Form -->
+                                    <div class="fieldWrapper mb-4">
+                                      {{ form.name.errors }}
+                                      <label class="form-label">Name <span class="required">*</span></label> {{ form.name }}
+                                  </div>
+                                  <!-- End Form -->
 
-                    <!-- Form -->
-                    <div class="mb-4">
-                      <label class="form-label" for="registerEmail"
-                        >Your email</label
-                      >
-                      <input
-                        type="email"
-                        class="form-control form-control-lg"
-                        name="email"
-                        id="registerEmail"
-                        placeholder="example@site.com"
-                        aria-label="example@site.com"
-                        required
-                        data-msg="Please enter a valid email address."
-                      />
-                    </div>
-                    <!-- End Form -->
+                                  <!-- Form -->
+                                  <div class="fieldWrapper mb-4">
+                                    {{ form.email.errors }}
+                                    <label class="form-label">Your Email <span class="required">*</span></label> {{ form.email }}
+                                </div>
+                                  <!-- End Form -->
 
                     <div class="d-grid text-center">
                       <button type="submit" class="btn btn-primary btn-lg">
