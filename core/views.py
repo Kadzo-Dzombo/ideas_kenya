@@ -72,7 +72,6 @@ def startup_registration(request):
         messages.success(request, 'Your application was successful.')
         return redirect('core:home')
     print('form invalid')
-    print(form)
     return render(request, 'startup-application.html', {'form': form})
 
 
@@ -268,7 +267,7 @@ class DeclinedInvestors(ListView):
     template_name = 'declined-investors.html'
 
 
-# export mail list
+# exports
 class MailList(ListView):
     model = MailList
     template_name = 'mail-list.html'
@@ -284,5 +283,33 @@ def export_mail_list(request):
         writer.writerow(receipient)
 
     response['Content-Disposition'] = 'attachment; filename="mail-list.csv"'
+
+    return response
+
+
+def export_startup_list(request):
+    response = HttpResponse(content_type='text/csv')
+
+    writer = csv.writer(response)
+    writer.writerow(['Name', 'Web Address', 'Startup Pitch', 'Startup Stage', 'Startup Month', 'Startup Year', 'Is Incorporated', 'Country', 'City', 'Applicant title', 'Applicant Role', 'Bio', 'Elevator Pitch', 'Motivation', 'Application Date'])
+
+    for startup in Startup.objects.filter(status='Approved').values_list('name', 'web_address', 'startup_pitch', 'startup_stage', 'start_month', 'start_year', 'incorporation', 'country', 'city', 'applicant_title', 'applicant_role', 'applicant_bio', 'startup_elevator_pitch', 'motivation', 'application_date'):
+        writer.writerow(startup)
+
+    response['Content-Disposition'] = 'attachment; filename="startups.csv"'
+
+    return response
+
+
+def export_investor_list(request):
+    response = HttpResponse(content_type='text/csv')
+
+    writer = csv.writer(response)
+    writer.writerow(['Type','Firstname', 'Lastname', 'Email Address', 'Linkedin Address', 'Country', 'City', 'Employement Status', 'Bio', 'Experience', 'Motivation', 'Application Date'])
+
+    for investor in Investor.objects.filter(status='Approved').values_list('investor_type', 'name', 'surname', 'email', 'linkedin_address', 'country', 'city', 'employment_status', 'bio', 'experience', 'reason', 'application_date'):
+        writer.writerow(investor)
+
+    response['Content-Disposition'] = 'attachment; filename="investors.csv"'
 
     return response

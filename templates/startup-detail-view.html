@@ -29,13 +29,13 @@
     <div class="row">
         <div class="col">
             {% if object.status == 'Pending' %}
-            <p>Status: <span class="badge bg-warning text-dark">Pending</span></p>
+            <p>Status: <span class="badge bg-warning text-dark">{{ object.status }}</span></p>
             {% elif object.status == 'Approved' %}
-            <p>Status: <span class="badge bg-success">Approved</span></p>
+            <p>Status: <span class="badge bg-success">{{ object.status }}</span></p>
             {% elif object.status == 'Declined' %}
-            <p>Status: <span class="badge bg-danger">Declined</span></p>
+            <p>Status: <span class="badge bg-danger">{{ object.status }}</span></p>
             {% else %}
-            <p>Status: <span class="badge bg-warning text-dark">Pending</span></p>
+            <p>Status: <span class="badge bg-warning text-dark">{{ object.status }}</span></p>
             {% endif %}
         </div>
         <div class="col edit-status-modal">
@@ -48,15 +48,24 @@
             <div class="col-4">
                 <h4>{{ object.name }}</h4>
                 {% if object.web_address %}
-                <p><a>{{ object.web_address }}</a></p>
+                <p><a href="{{ object.web_address }}">{{ object.web_address }}</a></p>
                 {% endif %}
-                <p>Founded in {{ object.start_month }}, {{ object.start_year }} at {{ object.city }}, {{ object.country }}</p>
+                <p>Founded {% if object.start_year %} in {{ object.start_month }}, {{ object.start_year }} {% endif %} {% if object.country %} at {{ object.city }}, {{ object.country }} {% endif %}
+                </p>
                 <p><b>Incorporated:</b> <br/>{{ object.incorporation }}</p>
 
                 <h6>CONTACT INFO</h6>
-                <p><b>Applicant:</b> <br/>{{ object.applicant_first_name }} {{ object.applicant_last_name }}, {{ object.applicant_title }} at {{ object.name }}</p>
+                {% if object.applicant_title %}
+                <p><b>Applicant:</b> <br/>{{ object.applicant_title }} at {{ object.name }} </p>
+                {% endif %}
+                <!-- email -->
+                {% if object.applicant_email %}
                 <p><b>Email:</b> <br/>{{ object.applicant_email }}</p>
+                {% endif %}
+                <!-- tel no -->
+                {% if object.applicant_phone_no %}
                 <p><b>Phone No:</b> <br/>+{{ object.applicant_phone_no }}</p>
+                {% endif %}
 
             </div>
 
@@ -78,9 +87,9 @@
         <div class="col-4"><a class="btn btn-outline-primary" href="{% url 'core:dashboard' %}">Back to Dashboard</a></div>
         {% if object.status == 'Pending' %}
         <div class="col-4"><a class="btn btn-primary" href="{{ object.get_approve_startup_url }}">Mark as Approved</a></div>
-        <div class="col-4"><a class="btn btn-danger" href="{{ object.get_decline_startup_url }}">Mark as Declined</a></div>
+        <div class="col-4"><a class="btn btn-secondary" href="{{ object.get_decline_startup_url }}">Mark as Declined</a></div>
         {% elif object.status == 'Approved' %}
-        <div class="col-4"><a class="btn btn-danger" href="{{ object.get_decline_startup_url }}">Mark as Declined</a></div>
+        <div class="col-4"><a class="btn btn-secondary" href="{{ object.get_decline_startup_url }}">Mark as Declined</a></div>
         {% else %}
         <div class="col-4"><a class="btn btn-primary" href="{{ object.get_approve_startup_url }}">Mark as Approved</a></div>
         {% endif %}

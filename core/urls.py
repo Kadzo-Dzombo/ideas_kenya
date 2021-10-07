@@ -11,7 +11,7 @@ from .views import (
     contact_page, Inquiries, InquiryDetailView, delete_inquiry,
     our_startups, about_us, help_page, interests, intro,
     startup_approved, startup_declined, investor_approved, investor_declined,
-    export_mail_list, MailList
+    export_mail_list, MailList, export_startup_list, export_investor_list
 )
 
 app_name = 'core'
@@ -51,8 +51,11 @@ urlpatterns = [
     path('admin/startup/decline/<slug>', startup_declined, name='startup-declined'),
     path('admin/investor/approve/<slug>', investor_approved, name='investor_approved'),
     path('admin/investor/decline/<slug>', investor_declined, name='investor_declined'),
-    # mail list
+    # exports
     path('admin/export-mail-list/', export_mail_list, name="export-mail-list"),
+    path('admin/export_startup_list/', export_startup_list, name='export_startup_list'),
+    path('admin/export_investor_list/', export_investor_list, name='export_investor_list'),
+    # maillist
     path('admin/mail-list/', MailList.as_view(), name="mail-list")
     
 ]

@@ -20,13 +20,13 @@
     <div class="row">
         <div class="col">
             {% if object.status == 'Pending' %}
-            <p>Status: <span class="badge bg-warning text-dark">Pending</span></p>
+            <p>Status: <span class="badge bg-warning text-dark">{{ object.status }}</span></p>
             {% elif object.status == 'Approved' %}
-            <p>Status: <span class="badge bg-success">Approved</span></p>
+            <p>Status: <span class="badge bg-success">{{ object.status }}</span></p>
             {% elif object.status == 'Declined' %}
-            <p>Status: <span class="badge bg-danger">Declined</span></p>
+            <p>Status: <span class="badge bg-danger">{{ object.status }}</span></p>
             {% else %}
-            <p>Status: <span class="badge bg-warning text-dark">Pending</span></p>
+            <p>Status: <span class="badge bg-warning text-dark">{{ object.status }}</span></p>
             {% endif %}
         </div>
         <div class="col edit-status-modal">
@@ -40,7 +40,7 @@
             <h4>{{ object.name }} {{ object.surname }}</h4>
             <p><b>Type of investor:</b> <br/>{{ object.investor_type }}</p>
             {% if object.linkedin_address %}
-            <p><a>{{ object.linkedin_address }}</a></p>
+            <p><a href="{{ object.linkedin_address }}">{{ object.linkedin_address }}</a></p>
             {% endif %}
             <p><b>Application Date:</b> <br/>{{ object.application_date }}</p>
 
@@ -64,9 +64,9 @@
         <div class="col-4"><a class="btn btn-outline-primary" href="{% url 'core:dashboard' %}">Back to Dashboard</a></div>
         {% if object.status == 'Pending' %}
         <div class="col-4"><a class="btn btn-primary" href="{{ object.get_approve_investor_url }}">Mark as Approved</a></div>
-        <div class="col-4"><a class="btn btn-danger" href="{{ object.get_declined_investor_url }}">Mark as Declined</a></div>
+        <div class="col-4"><a class="btn btn-secondary" href="{{ object.get_declined_investor_url }}">Mark as Declined</a></div>
         {% elif object.status == 'Approved' %}
-        <div class="col-4"><a class="btn btn-danger" href="{{ object.get_declined_investor_url }}">Mark as Declined</a></div>
+        <div class="col-4"><a class="btn btn-secondary" href="{{ object.get_declined_investor_url }}">Mark as Declined</a></div>
         {% else %}
         <div class="col-4"><a class="btn btn-primary" href="{{ object.get_approve_investor_url }}">Mark as Approved</a></div>
         {% endif %}
