@@ -1,0 +1,172 @@
+{% extends 'admin/base.html' %}
+
+<!-- body -->
+{% block content %}
+<div class="nk-content">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+                <div class="nk-block-head nk-block-head-sm">
+                    <div class="nk-block-between">
+                        <div class="nk-block-head-content">
+                            <h4 class="nk-block-title page-title">Dashboard</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="nk-block">
+                    <div class="mt-5 mb-2">
+                        <h6 class="h6 text-muted">Startups</h6>
+                    </div>
+                    <div class="row g-gs">
+                        <div class="col-xxl-4">
+                            <div class="card">
+                                <div class="nk-ecwg nk-ecwg3">
+                                    <div class="card-inner pb-0">
+                                        <div class="card-title-group">
+                                            <div class="card-title">
+                                                <h6 class="title">Active</h6>
+                                            </div>
+                                        </div>
+                                        <div class="data">
+                                            <div class="data-group">
+                                                <div class="amount">{{ active_count }}</div>
+                                                <div class="info text-right">
+                                                    <span class="change up text-danger"><em class="icon ni ni-arrow-long-up"></em
+                          >4.63%</span
+                        ><br /><span>vs. last week</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-4">
+                            <div class="card">
+                                <div class="nk-ecwg nk-ecwg3">
+                                    <div class="card-inner pb-0">
+                                        <div class="card-title-group">
+                                            <div class="card-title">
+                                                <h6 class="title">Pending</h6>
+                                            </div>
+                                        </div>
+                                        <div class="data">
+                                            <div class="data-group">
+                                                <div class="amount">{{ pending_count }}</div>
+                                                <div class="info text-right">
+                                                    <span class="change up text-danger"><em class="icon ni ni-arrow-long-up"></em
+                          >4.63%</span
+                        ><br /><span>vs. last week</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-4">
+                            <div class="card">
+                                <div class="nk-ecwg nk-ecwg3">
+                                    <div class="card-inner pb-0">
+                                        <div class="card-title-group">
+                                            <div class="card-title">
+                                                <h6 class="title">Declined</h6>
+                                            </div>
+                                        </div>
+                                        <div class="data">
+                                            <div class="data-group">
+                                                <div class="amount">{{ declined_count }}</div>
+                                                <div class="info text-right">
+                                                    <span class="change up text-danger"><em class="icon ni ni-arrow-long-up"></em
+                          >4.63%</span
+                        ><br /><span>vs. last week</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-5 mb-2">
+                        <h6 class="h6 text-muted">Investors</h6>
+                    </div>
+
+                    <div class="row g-gs">
+                        <div class="col-xxl-4">
+                            <div class="card">
+                                <div class="nk-ecwg nk-ecwg3">
+                                    <div class="card-inner pb-0">
+                                        <div class="card-title-group">
+                                            <div class="card-title">
+                                                <h6 class="title">Active</h6>
+                                            </div>
+                                        </div>
+                                        <div class="data">
+                                            <div class="data-group">
+                                                <div class="amount">{{ active_investor_count }}</div>
+                                                <div class="info text-right">
+                                                    <span class="change up text-danger"><em class="icon ni ni-arrow-long-up"></em
+                          >4.63%</span
+                        ><br /><span>vs. last week</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-4">
+                            <div class="card">
+                                <div class="nk-ecwg nk-ecwg3">
+                                    <div class="card-inner pb-0">
+                                        <div class="card-title-group">
+                                            <div class="card-title">
+                                                <h6 class="title">Pending</h6>
+                                            </div>
+                                        </div>
+                                        <div class="data">
+                                            <div class="data-group">
+                                                <div class="amount">{{ pending_investor_count }}</div>
+                                                <div class="info text-right">
+                                                    <span class="change up text-danger"><em class="icon ni ni-arrow-long-up"></em
+                          >4.63%</span
+                        ><br /><span>vs. last week</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xxl-4">
+                            <div class="card">
+                                <div class="nk-ecwg nk-ecwg3">
+                                    <div class="card-inner pb-0">
+                                        <div class="card-title-group">
+                                            <div class="card-title">
+                                                <h6 class="title">Declined</h6>
+                                            </div>
+                                        </div>
+                                        <div class="data">
+                                            <div class="data-group">
+                                                <div class="amount">{{ declined_investor_count }}</div>
+                                                <div class="info text-right">
+                                                    <span class="change up text-danger"><em class="icon ni ni-arrow-long-up"></em
+                          >4.63%</span
+                        ><br /><span>vs. last week</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

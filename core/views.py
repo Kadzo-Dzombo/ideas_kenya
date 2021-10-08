@@ -22,7 +22,7 @@ def landing_page(request):
 
 
 def our_startups(request):
-    return render(request, 'startups.html', {})
+    return render(request, 'admin/startups.html', {})
 
 
 def about_us(request):
@@ -62,7 +62,7 @@ def login_page(request):
             return redirect('core:dashboard')
         else:
             messages.warning(request, 'Invalid username or password')
-    return render(request, 'login.html', {'form': form})
+    return render(request, 'admin/login.html', {'form': form})
 
 # registration views
 def startup_registration(request):
@@ -72,7 +72,7 @@ def startup_registration(request):
         messages.success(request, 'Your application was successful.')
         return redirect('core:home')
     print('form invalid')
-    return render(request, 'startup-application.html', {'form': form})
+    return render(request, 'admin/startup-application.html', {'form': form})
 
 
 def investor_registration(request):
@@ -82,7 +82,7 @@ def investor_registration(request):
         messages.success(request, 'Your application was successful.')
         return redirect('core:home')
     print('form invalid')
-    return render(request, 'investor-application.html', {'form': form})
+    return render(request, 'admin/investor-application.html', {'form': form})
 
 
 def dashboard(request):
@@ -107,17 +107,17 @@ def dashboard(request):
         'declined_investor_count': declined_investor_count,
         'unread_inquiry': unread_inquiry
     }
-    return render(request, 'dashboard.html', context)
+    return render(request, 'admin/dashboard.html', context)
 
 # detail views
 class StartupDetailView(DetailView):
     model = Startup
-    template_name = 'startup-detail-view.html'
+    template_name = 'admin/startup-detail-view.html'
 
 
 class InvestorDetailView(DetailView):
     model = Investor
-    template_name = 'investor-detail-view.html'
+    template_name = 'admin/investor-detail-view.html'
 
 
 # status update views
@@ -170,7 +170,7 @@ def startupUpdateView(request, slug):
         'object': startup_obj,
         'form': form
     }
-    return render(request, 'startup-update-view.html', context)
+    return render(request, 'admin/startup-update-view.html', context)
 
 
 def investorUpdateView(request, slug):
@@ -188,7 +188,7 @@ def investorUpdateView(request, slug):
         'object': investor_obj,
         'form': form
     }
-    return render(request, 'investor-update-view.html', context)
+    return render(request, 'admin/investor-update-view.html', context)
 
 
 # delete views
@@ -209,12 +209,12 @@ def delete_investor(request, slug):
 class Inquiries(ListView):
     model = Contact
     queryset = Contact.objects.all()
-    template_name = 'inquiries.html'
+    template_name = 'admin/inquiries.html'
 
 
 class InquiryDetailView(DetailView):
     model = Contact
-    template_name = 'inquiry-detail-view.html'
+    template_name = 'admin/inquiry-detail-view.html'
 
     def get_object(self, *args, **kwargs):
         inquiry_slug = self.kwargs.get('slug')
@@ -239,38 +239,38 @@ def delete_inquiry(request, slug):
 class ActiveStartups(ListView):
     model = Startup
     queryset = Startup.objects.filter(status='Approved')
-    template_name = 'active-startups.html'
+    template_name = 'admin/active-startups.html'
 
 class PendingStartups(ListView):
     model = Startup
     queryset = Startup.objects.filter(status='Pending')
-    template_name = 'pending-startups.html'
+    template_name = 'admin/pending-startups.html'
 
 class DeclinedStartups(ListView):
     model = Startup
     queryset = Startup.objects.filter(status='Declined')
-    template_name = 'declined-startups.html'
+    template_name = 'admin/declined-startups.html'
 
 class ActiveInvestors(ListView):
     model = Investor
     queryset = Investor.objects.filter(status='Approved')
-    template_name = 'active-investors.html'
+    template_name = 'admin/active-investors.html'
 
 class PendingInvestors(ListView):
     model = Investor
     queryset = Investor.objects.filter(status='Pending')
-    template_name = 'pending-investors.html'
+    template_name = 'admin/pending-investors.html'
 
 class DeclinedInvestors(ListView):
     model = Investor
     queryset = Investor.objects.filter(status='Declined')
-    template_name = 'declined-investors.html'
+    template_name = 'admin/declined-investors.html'
 
 
 # exports
 class MailList(ListView):
     model = MailList
-    template_name = 'mail-list.html'
+    template_name = 'admin/mail-list.html'
 
 
 def export_mail_list(request):

@@ -1,0 +1,99 @@
+{% extends 'admin/base.html' %}
+<!-- static -->
+{% load static %}
+
+<!-- body -->
+{% block content %}
+
+<div class="nk-content">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+
+                <!-- title -->
+                <div class="nk-block-head nk-block-head-sm">
+                    <div class="nk-block-between">
+                        <div class="nk-block-head-content">
+                            <h4 class="nk-block-title page-title">
+                                Inquiries
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- data -->
+                {% if object_list|length > 0 %}
+                <div class="nk-block">
+                    <div class="row g-gs">
+                        <div class="nk-tb-list is-separate is-medium mb-3">
+                            <!-- table headers -->
+                            <div class="nk-tb-item nk-tb-head">
+                                <!-- 1 -->
+                                <div class="nk-tb-col nk-tb-col-check">
+                                    <div class="custom-control custom-control-sm custom-checkbox notext">
+                                        <input type="checkbox" class="custom-control-input" id="oid" /><label class="custom-control-label" for="oid"></label>
+                                    </div>
+                                </div>
+                                <!-- 2 -->
+                                <div class="nk-tb-col"><span>#</span></div>
+                                <!-- 3 -->
+                                <div class="nk-tb-col">
+                                    <span class="d-none d-mb-block">Name</span>
+                                </div>
+                                <!-- 4 -->
+                                <div class="nk-tb-col tb-col-sm">
+                                    <span>Email Address</span>
+                                </div>
+                                <!-- 5 -->
+                                <div class="nk-tb-col"><span>Action</span></div>
+                            </div>
+
+                            <!--  table data -->
+                            {% for object in object_list %}
+                            <div class="nk-tb-item">
+                                <!-- 1 -->
+                                <div class="nk-tb-col nk-tb-col-check">
+                                    <div class="custom-control custom-control-sm custom-checkbox notext">
+                                        <input type="checkbox" class="custom-control-input" id="oid01" /><label class="custom-control-label" for="oid01"></label>
+                                    </div>
+                                </div>
+                                <!-- 2 -->
+                                <div class="nk-tb-col">
+                                    <span class="tb-lead"><a href="#">{{ forloop.counter }}</a></span>
+                                </div>
+                                <!-- 3 -->
+                                <div class="nk-tb-col tb-col-md">
+                                    <span class="tb-sub">{{ object.name }}</span>
+                                </div>
+                                <!-- 4 -->
+                                <div class="nk-tb-col tb-col-md">
+                                    <span class="tb-sub text-primary">{{ object.email }}</span>
+                                </div>
+                                <!-- links -->
+                                <div class="nk-tb-col nk-tb-col-tools">
+                                    <a href="{{ object.get_delete_inquiry_url }}" class="btn btn-icon btn-trigger btn-tooltip"><em class="icon ni ni-trash"></em></a>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+                            <br>
+                            <a class="btn btn-primary" href="{% url 'core:export-mail-list' %}">Export</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- if queryset doesn't exist -->
+                {% else %}
+                <div class="nk-block">
+                    <div class="row g-gs">
+                        <div class="nk-tb-list is-separate is-medium mb-3">
+                            <p class="lead">No subscribers yet</p>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

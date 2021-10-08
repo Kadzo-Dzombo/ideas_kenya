@@ -1,0 +1,196 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx" class="js">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Softnio" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Ideas kenya Admin" />
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
+    <title>Admin | Ideas Kenya</title>
+    <link rel="stylesheet" href="{% static 'assets/css/admin.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/theme.css' %}" />
+</head>
+
+<body class="nk-body bg-lighter npc-general has-sidebar ui-bordered">
+    <div class="nk-app-root">
+        <div class="nk-main">
+            <div class="nk-sidebar nk-sidebar-fixed is-light" data-content="sidebarMenu">
+                <div class="nk-sidebar-element nk-sidebar-head">
+                    <div class="nk-sidebar-brand">
+                        <a href="{% url 'core:dashboard' %}" class="logo-link nk-sidebar-logo">
+                            <h5>Ideas Kenya</h5>
+                        </a>
+                    </div>
+                    <div class="nk-menu-trigger mr-n2">
+                        <a href="#" class="nk-nav-toggle nk-quick-nav-icon d-xl-none" data-target="sidebarMenu"><em class="icon ni ni-arrow-left"></em></a
+              ><a
+                href="#"
+                class="nk-nav-compact nk-quick-nav-icon d-none d-xl-inline-flex"
+                data-target="sidebarMenu"
+                ><em class="icon ni ni-menu"></em
+              ></a>
+                    </div>
+                </div>
+                <div class="nk-sidebar-element">
+                    <div class="nk-sidebar-content">
+                        <div class="nk-sidebar-menu" data-simplebar>
+                            <ul class="nk-menu">
+                                <li class="nk-menu-item active">
+                                    <a href="{% url 'core:dashboard' %}" class="nk-menu-link"><span class="nk-menu-icon"
+                        ><em class="icon ni ni-dashboard"></em></span
+                      ><span class="nk-menu-text">Dashboard</span></a
+                    >
+                  </li>
+                  <li class="nk-menu-heading">
+                    <h6 class="overline-title text-primary-alt">Startups</h6>
+                  </li>
+                  <li class="nk-menu-item">
+                    <a href="{% url 'core:active-startups' %}" class="nk-menu-link"
+                      ><span class="nk-menu-icon"
+                        ><em class="icon ni ni-activity"></em></span
+                      ><span class="nk-menu-text">Active</span></a
+                    >
+                  </li>
+                  <li class="nk-menu-item">
+                    <a href="{% url 'core:pending-startups' %}" class="nk-menu-link"
+                      ><span class="nk-menu-icon"
+                        ><em class="icon ni ni-loader"></em></span
+                      ><span class="nk-menu-text">Pending</span></a
+                    >
+                  </li>
+                  <li class="nk-menu-item">
+                    <a href="{% url 'core:declined-startups' %}" class="nk-menu-link"
+                      ><span class="nk-menu-icon"
+                        ><em class="icon ni ni-delete"></em></span
+                      ><span class="nk-menu-text">Declined</span></a
+                    >
+                  </li>
+                  <li class="nk-menu-heading">
+                    <h6 class="overline-title text-primary-alt">Investors</h6>
+                  </li>
+                  <li class="nk-menu-item">
+                    <a href="{% url 'core:active-investors' %}" class="nk-menu-link"
+                      ><span class="nk-menu-icon"
+                        ><em class="icon ni ni-activity"></em></span
+                      ><span class="nk-menu-text">Active</span></a
+                    >
+                  </li>
+                  <li class="nk-menu-item">
+                    <a href="{% url 'core:pending-investors' %}" class="nk-menu-link"
+                      ><span class="nk-menu-icon"
+                        ><em class="icon ni ni-loader"></em></span
+                      ><span class="nk-menu-text">Pending</span></a
+                    >
+                  </li>
+                  <li class="nk-menu-item">
+                    <a href="{% url 'core:declined-investors' %}" class="nk-menu-link"
+                      ><span class="nk-menu-icon"
+                        ><em class="icon ni ni-delete"></em></span
+                      ><span class="nk-menu-text">Declined</span></a
+                    >
+                  </li>
+                  <li class="nk-menu-heading">
+                    <h6 class="overline-title text-primary-alt">Inquiries</h6>
+                  </li>
+                  <li class="nk-menu-item">
+                    <a href="{% url 'core:inquiry' %}" class="nk-menu-link"
+                      ><span class="nk-menu-icon"
+                        ><em class="icon ni ni-chat"></em></span
+                      ><span class="nk-menu-text">Inquiries</span></a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- top nav -->
+        <div class="nk-wrap">
+          <div class="nk-header nk-header-fixed is-light">
+            <div class="container-fluid">
+              <div class="nk-header-wrap">
+                <div class="nk-menu-trigger d-xl-none ml-n1">
+                  <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="sidebarMenu"><em class="icon ni ni-menu"></em></a>
+                        </div>
+                        <div class="nk-header-brand d-xl-none">
+                            <a href="{% url 'core:dashboard' %}" class="logo-link"><img class="logo-light logo-img" src="{% static 'images/logo.png' %}" srcset="{% static 'images/logo2x.png 2x' %}" alt="logo" />
+                                <img class="logo-dark logo-img" src="{% static 'images/logo-dark.png' %}" srcset="{% static 'images/logo-dark2x.png 2x' %}" alt="logo-dark" /></a>
+                        </div>
+                        <div class="nk-header-tools">
+                            <ul class="nk-quick-nav">
+                                <li class="dropdown chats-dropdown hide-mb-xs">
+                                    <a href="{% url 'core:inquiry' %}" class="dropdown-toggle nk-quick-nav-icon" data-toggle="dropdown">
+                                        <div class="icon-status icon-status-na">
+                                            <em class="icon ni ni-comments"></em></div>
+                                    </a>
+                                </li>
+                                <li class="dropdown user-dropdown">
+                                    <a href="#" class="dropdown-toggle mr-n1" data-toggle="dropdown">
+                                        <div class="user-toggle">
+                                            <div class="user-avatar sm">
+                                                <em class="icon ni ni-user-alt"></em>
+                                            </div>
+                                            <div class="user-info d-none d-xl-block">
+                                                <div class="user-status user-status-active">
+                                                    Administator
+                                                </div>
+                                                <div class="user-name dropdown-indicator">
+                                                    Ideas Kenya Admin
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-md dropdown-menu-right">
+                                        <div class="dropdown-inner user-card-wrap bg-lighter d-none d-md-block">
+                                            <div class="user-card">
+                                                <div class="user-avatar"><span>IK</span></div>
+                                                <div class="user-info">
+                                                    <span class="lead-text">Ideas Kenya Admin</span><span class="sub-text">admin@ideaskenya.com</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- drop down -->
+                                        <div class="dropdown-inner">
+                                            <ul class="link-list">
+                                                <li>
+                                                    <a href="{% url 'core:mail-list' %}"><em class="icon ni ni-signout"></em><span>MailList</span></a>
+                                                </li>
+                                                <li>
+                                                    <a href="{% url 'core:logout' %}"><em class="icon ni ni-signout"></em><span>Sign out</span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- content -->
+            {% block content %}
+            <!-- some code here -->
+            {% endblock %}
+
+            <!-- footer -->
+            <div class="nk-footer">
+                <div class="container-fluid">
+                    <div class="nk-footer-wrap justify-content-center">
+                        <div class="nk-footer-copyright">
+                            &copy; 2021 Ideas Kenya. All rights Reserved
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <script src="{% static 'assets/js/scripts.js' %}"></script>
+</body>
+
+</html>

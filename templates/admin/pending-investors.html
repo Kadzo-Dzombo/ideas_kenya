@@ -1,0 +1,123 @@
+{% extends 'admin/base.html' %}
+<!-- static -->
+{% load static %}
+
+<!-- body -->
+{% block content %}
+
+<div class="nk-content">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
+
+                <!-- title -->
+                <div class="nk-block-head nk-block-head-sm">
+                    <div class="nk-block-between">
+                        <div class="nk-block-head-content">
+                            <h4 class="nk-block-title page-title">
+                                Pending Investors
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- data -->
+                {% if object_list|length > 0 %}
+                <div class="nk-block">
+                    <div class="row g-gs">
+                        <div class="nk-tb-list is-separate is-medium mb-3">
+                            <!-- table headers -->
+                            <div class="nk-tb-item nk-tb-head">
+                                <!-- 1 -->
+                                <div class="nk-tb-col nk-tb-col-check">
+                                    <div class="custom-control custom-control-sm custom-checkbox notext">
+                                        <input type="checkbox" class="custom-control-input" id="oid" /><label class="custom-control-label" for="oid"></label>
+                                    </div>
+                                </div>
+                                <!-- 2 -->
+                                <div class="nk-tb-col"><span>Investor Id</span></div>
+                                <!-- 3 -->
+                                <div class="nk-tb-col tb-col-md">
+                                    <span>Investor Name</span>
+                                </div>
+                                <!-- 4 -->
+                                <div class="nk-tb-col">
+                                    <span class="d-none d-mb-block">Contact Email</span>
+                                </div>
+                                <!-- 5 -->
+                                <div class="nk-tb-col tb-col-sm">
+                                    <span>Investor Type</span>
+                                </div>
+                                <!-- 6 -->
+                                <div class="nk-tb-col tb-col-sm">
+                                    <span>Investor Title</span>
+                                </div>
+                                <!-- 7 -->
+                                <div class="nk-tb-col tb-col-md">
+                                    <span>Application Date</span>
+                                </div>
+                                <!-- 8 -->
+                                <div class="nk-tb-col"><span>Action</span></div>
+                            </div>
+
+                            <!--  table data -->
+                            {% for object in object_list %}
+                            <div class="nk-tb-item">
+                                <!-- 1 -->
+                                <div class="nk-tb-col nk-tb-col-check">
+                                    <div class="custom-control custom-control-sm custom-checkbox notext">
+                                        <input type="checkbox" class="custom-control-input" id="oid01" /><label class="custom-control-label" for="oid01"></label>
+                                    </div>
+                                </div>
+                                <!-- 2 -->
+                                <div class="nk-tb-col">
+                                    <span class="tb-lead"><a href="#">{{ forloop.counter }}</a></span>
+                                </div>
+                                <!-- 3 -->
+                                <div class="nk-tb-col tb-col-md">
+                                    <span class="tb-sub">{{ object.name }} {{ object.surname }}</span>
+                                </div>
+                                <!-- 4 -->
+                                <div class="nk-tb-col tb-col-sm">
+                                    <span class="tb-sub">{{ object.email }}</span>
+                                </div>
+                                <!-- 5 -->
+                                <div class="nk-tb-col tb-col-md">
+                                    <span class="tb-sub text-primary">{{ object.investor_type }}</span>
+                                </div>
+                                <!-- 6 -->
+                                <div class="nk-tb-col tb-col-md">
+                                    <span class="tb-sub text-primary">{{ object.title }}</span>
+                                </div>
+                                <!-- 7 -->
+                                <div class="nk-tb-col">
+                                    <span class="tb-lead">{{ object.application_date }}</span>
+                                </div>
+                                <!-- links -->
+                                <div class="nk-tb-col nk-tb-col-tools">
+                                    <a href="{{ object.get_absolute_url }}" class="btn btn-icon btn-trigger btn-tooltip"><em class="icon ni ni-eye"></em></a>
+                                    <a href="{{ object.get_update_investor_url }}" class="btn btn-icon btn-trigger btn-tooltip"><em class="icon ni ni-edit-alt"></em></a>
+                                    <a href="{{ object.get_delete_investor_url }}" class="btn btn-icon btn-trigger btn-tooltip"><em class="icon ni ni-trash"></em></a>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- if queryset doesn't exist -->
+                {% else %}
+                <div class="nk-block">
+                    <div class="row g-gs">
+                        <div class="nk-tb-list is-separate is-medium mb-3">
+                            <p class="lead">No pending investors available</p>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
