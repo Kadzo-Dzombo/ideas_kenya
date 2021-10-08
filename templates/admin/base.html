@@ -121,12 +121,21 @@
                         </div>
                         <div class="nk-header-tools">
                             <ul class="nk-quick-nav">
+                                <!-- inquiry -->
+                                <li class="dropdown chats-dropdown hide-mb-xs">
+                                    <a href="{% url 'core:mail-list' %}" class="dropdown-toggle nk-quick-nav-icon" data-toggle="dropdown">
+                                        <div class="icon-status icon-status-na">
+                                            <em class="icon ni ni-users"></em></div>
+                                    </a>
+                                </li>
+                                <!-- inquiry -->
                                 <li class="dropdown chats-dropdown hide-mb-xs">
                                     <a href="{% url 'core:inquiry' %}" class="dropdown-toggle nk-quick-nav-icon" data-toggle="dropdown">
                                         <div class="icon-status icon-status-na">
                                             <em class="icon ni ni-comments"></em></div>
                                     </a>
                                 </li>
+                                <!-- profile -->
                                 <li class="dropdown user-dropdown">
                                     <a href="#" class="dropdown-toggle mr-n1" data-toggle="dropdown">
                                         <div class="user-toggle">

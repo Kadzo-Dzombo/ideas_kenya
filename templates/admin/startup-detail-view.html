@@ -1,105 +1,130 @@
-{% extends 'base.html' %}
+{% extends 'admin/base.html' %}
 
-<!-- style -->
-{% block head %}
-<style>
-    .title {
-        font-weight: bolder;
-    }
-    
-    img {
-        width: 100%;
-    }
-    
-    .startup-info {
-        display: flex;
-        justify-content: space-evenly;
-    }
-    
-    .edit-status-modal a {
-        float: right;
-    }
-</style>
-{% endblock %}
 
 <!-- body -->
 {% block content %}
 
-<div class="container">
-    <div class="row">
-        <div class="col">
-            {% if object.status == 'Pending' %}
-            <p>Status: <span class="badge bg-warning text-dark">{{ object.status }}</span></p>
-            {% elif object.status == 'Approved' %}
-            <p>Status: <span class="badge bg-success">{{ object.status }}</span></p>
-            {% elif object.status == 'Declined' %}
-            <p>Status: <span class="badge bg-danger">{{ object.status }}</span></p>
-            {% else %}
-            <p>Status: <span class="badge bg-warning text-dark">{{ object.status }}</span></p>
-            {% endif %}
-        </div>
-        <div class="col edit-status-modal">
-            <a href="{{ object.get_update_startup_url }}" class="link">Edit Startup</a>
-        </div>
-        <hr>
-    </div>
-    <div class="row align-items-center justify-content-center">
-        <div class="startup-info">
-            <div class="col-4">
-                <h4>{{ object.name }}</h4>
-                {% if object.web_address %}
-                <p><a href="{{ object.web_address }}">{{ object.web_address }}</a></p>
-                {% endif %}
-                <p>Founded {% if object.start_year %} in {{ object.start_month }}, {{ object.start_year }} {% endif %} {% if object.country %} at {{ object.city }}, {{ object.country }} {% endif %}
-                </p>
-                <p><b>Incorporated:</b> <br/>{{ object.incorporation }}</p>
+<div class="nk-content">
+    <div class="container-fluid">
+        <div class="nk-content-inner">
+            <div class="nk-content-body">
 
-                <h6>CONTACT INFO</h6>
-                {% if object.applicant_title %}
-                <p><b>Applicant:</b> <br/>{{ object.applicant_title }} at {{ object.name }} </p>
-                {% endif %}
-                <!-- email -->
-                {% if object.applicant_email %}
-                <p><b>Email:</b> <br/>{{ object.applicant_email }}</p>
-                {% endif %}
-                <!-- tel no -->
-                {% if object.applicant_phone_no %}
-                <p><b>Phone No:</b> <br/>+{{ object.applicant_phone_no }}</p>
-                {% endif %}
+
+                <div class="container card" style="padding: 2em;">
+                    <!-- status -->
+                    <div class="row">
+                        <div class="col">
+                            <p>
+                                <span class="badge bg-primary text-light">{{ object.status }}</span> {% if object.incorporation == True %}
+                                <span class="badge bg-secondary text-light">Incorporated</span> {% endif %}
+                            </p>
+                        </div>
+                        <div class="col edit-status-modal">
+                            <p>
+                                <a href="{{ object.get_update_startup_url }}" class="link">Edit Startup</a>
+                            </p>
+                        </div>
+                        <hr>
+                    </div>
+                    <br>
+
+                    <!-- content -->
+                    <div class="row align-items-center justify-content-center">
+                        <div class="startup-info">
+                            <div class="col">
+                                <h4>{{ object.name }}</h4>
+                                <!-- date -->
+                                <p class="sub-text">Applied on {{ object.application_date }}</p>
+
+                                <div class="myIconContainer" style="display: flex; font-weight: 600;">
+                                    <!-- mail -->
+                                    {% if object.web_address %}
+                                    <p class="mr-2">
+                                        <a href="{{ object.web_address }}">
+                                            <em class="icon ni ni-globe mr-1"></em> {{ object.web_address }}
+                                        </a>
+                                    </p>
+                                    {% endif %}
+
+                                    <!-- founded -->
+                                    <p class="mr-2">
+                                        <em class="icon ni ni-history mr-1"></em> {% if object.start_year %} {{ object.start_month }}, {{ object.start_year }} {% endif %}
+                                    </p>
+
+                                    <p class="mr-2">
+                                        {% if object.country and object.city %}
+                                        <em class="icon ni ni-location mr-1"></em>
+                                        <!-- if country -->
+                                        {{ object.city }}, {{ object.country }} {% endif %}
+                                    </p>
+
+                                    <!-- applicant -->
+                                    {% if object.applicant_title %}
+                                    <p class="mr-2">
+                                        <em class="icon ni ni-user-circle mr-1"></em> {{ object.applicant_title }} at {{ object.name }}
+                                    </p>
+                                    {% endif %}
+
+                                    <!-- email -->
+                                    {% if object.applicant_email %}
+                                    <p class="mr-2">
+                                        <em class="icon ni ni-mail mr-1"></em> {{ object.applicant_email }}
+                                    </p>
+                                    {% endif %}
+
+                                    <!-- tel no -->
+                                    {% if object.applicant_phone_no %}
+                                    <p class="mr-2">
+                                        <em class="icon ni ni-call mr-1"></em> {{ object.applicant_phone_no }}
+                                    </p>
+                                    {% endif %}
+                                </div>
+                                <br>
+
+                                <!-- text -->
+                                <p>
+                                    <b>Applicant Bio:</b>
+                                    <br/>{{ object.applicant_bio }}
+                                </p>
+
+                                <p class="title">
+                                    <b>Startup Pitch:</b>
+                                    <br>{{ object.startup_pitch }}
+                                </p>
+
+                                <p class="title">
+                                    <b>Startup Elevator Pitch:</b>
+                                    <br>{{ object.startup_elevator_pitch }}
+                                </p>
+
+                                <p class="title">
+                                    <b>Reason for participating in the program:</b>
+                                    <br>{{ object.motivation }}
+                                </p>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <br><br>
+                    <div class="row mb-4">
+                        <div class="col-4"><a class="btn btn-outline-primary" href="{% url 'core:dashboard' %}">Back to Dashboard</a></div>
+                        {% if object.status == 'Pending' %}
+                        <div class="col-4"><a class="btn btn-primary" href="{{ object.get_approve_startup_url }}">Mark as Approved</a></div>
+                        <div class="col-4"><a class="btn btn-secondary" href="{{ object.get_decline_startup_url }}">Mark as Declined</a></div>
+                        {% elif object.status == 'Approved' %}
+                        <div class="col-4"><a class="btn btn-secondary" href="{{ object.get_decline_startup_url }}">Mark as Declined</a></div>
+                        {% else %}
+                        <div class="col-4"><a class="btn btn-primary" href="{{ object.get_approve_startup_url }}">Mark as Approved</a></div>
+                        {% endif %}
+                    </div>
+
+                </div>
 
             </div>
-
-            <div class="col-8">
-                <p class="title">Applicant Bio</p>
-                <p><b>Email:</b> <br/>{{ object.applicant_bio }}</p>
-                <p class="title">Startup Pitch</p>
-                <p>{{ object.startup_pitch }}</p>
-                <p class="title">Startup Elevator Pitch</p>
-                <p>{{ object.startup_elevator_pitch }}</p>
-                <p class="title">Reason for participating in the program</p>
-                <p>{{ object.motivation }}</p>
-            </div>
-
         </div>
     </div>
-
-    <div class="row mb-4">
-        <div class="col-4"><a class="btn btn-outline-primary" href="{% url 'core:dashboard' %}">Back to Dashboard</a></div>
-        {% if object.status == 'Pending' %}
-        <div class="col-4"><a class="btn btn-primary" href="{{ object.get_approve_startup_url }}">Mark as Approved</a></div>
-        <div class="col-4"><a class="btn btn-secondary" href="{{ object.get_decline_startup_url }}">Mark as Declined</a></div>
-        {% elif object.status == 'Approved' %}
-        <div class="col-4"><a class="btn btn-secondary" href="{{ object.get_decline_startup_url }}">Mark as Declined</a></div>
-        {% else %}
-        <div class="col-4"><a class="btn btn-primary" href="{{ object.get_approve_startup_url }}">Mark as Approved</a></div>
-        {% endif %}
-    </div>
-
 </div>
-
-<script>
-    header = document.querySelector('#header');
-    header.style.display = 'none';
-</script>
 
 {% endblock %}
