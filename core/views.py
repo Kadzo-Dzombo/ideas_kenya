@@ -163,7 +163,7 @@ def startupUpdateView(request, slug):
         form.save()
         print('saved')
         messages.success(request, 'Startup Status successfully updated.')
-        return redirect('core:dashboard')
+        return redirect('core:startup-detail-view', slug=startup_obj.slug)
     print('form not valid')
 
     context = {
@@ -181,7 +181,7 @@ def investorUpdateView(request, slug):
         form.save()
         print('saved')
         messages.success(request, 'Investor Status successfully updated.')
-        return redirect('core:dashboard')
+        return redirect('core:investor-detail-view', slug=investor_obj.slug)
     print('form not valid')
 
     context = {
@@ -194,16 +194,38 @@ def investorUpdateView(request, slug):
 # delete views
 def delete_startup(request, slug):
     startup_object = get_object_or_404(Startup, slug=slug)
-    startup_object.delete()
-    messages.success(request, 'Record was deleted successfully')
-    return redirect('core:dashboard')
+    if startup_object.status == 'Approved':
+        startup_object.delete()
+        messages.success(request, 'Record was deleted successfully')
+        return redirect('/admin/startups/active/')
+    elif startup_object.status == 'Pending':
+        startup_object.delete()
+        messages.success(request, 'Record was deleted successfully')
+        return redirect('/admin/startups/pending/')
+    elif startup_object.status == 'Declined':
+        startup_object.delete()
+        messages.success(request, 'Record was deleted successfully')
+        return redirect('/admin/startups/declined/')
+    else:
+        return redirect('core:dashboard')
 
 
 def delete_investor(request, slug):
     investor_object = get_object_or_404(Investor, slug=slug)
-    investor_object.delete()
-    messages.success(request, 'Record was deleted successfully')
-    return redirect('core:dashboard')
+    if investor_object.status == 'Approved':
+        investor_object.delete()
+        messages.success(request, 'Record was deleted successfully')
+        return redirect('/admin/investors/active/')
+    elif investor_object.status == 'Pending':
+        investor_object.delete()
+        messages.success(request, 'Record was deleted successfully')
+        return redirect('/admin/investors/pending/')
+    elif investor_object.status == 'Pending':
+        investor_object.delete()
+        messages.success(request, 'Record was deleted successfully')
+        return redirect('admin/investors/declined/')
+    else:
+        return redirect('core:dashboard')
 
 
 class Inquiries(ListView):
@@ -232,7 +254,7 @@ def delete_inquiry(request, slug):
     inquiry_object = get_object_or_404(Contact, slug=slug)
     inquiry_object.delete()
     messages.success(request, 'Inquiry was deleted successfully')
-    return redirect('core:dashboard')
+    return redirect('/admin/inquiries/')
 
 
 # list views active, pending, declined
@@ -268,7 +290,7 @@ class DeclinedInvestors(ListView):
 
 
 # exports
-class MailList(ListView):
+class MailListView(ListView):
     model = MailList
     template_name = 'admin/mail-list.html'
 

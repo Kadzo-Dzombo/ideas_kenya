@@ -43,7 +43,6 @@
                                 </p>
                                 {% endif %}
 
-
                                 <!-- mail -->
                                 <p class="mr-2">
                                     <em class="icon ni ni-mail mr-1"></em> {{ object.email }}
@@ -77,7 +76,16 @@
 
                     <br><br>
                     <div class="row mb-4">
-                        <div class="col-4"><a class="btn btn-outline-primary" href="{% url 'core:dashboard' %}">Back to Dashboard</a></div>
+                        <!-- back -->
+                        {% if object.status == 'Pending' %}
+                        <div class="col-4"><a class="btn btn-outline-primary" href="{% url 'core:pending-investors' %}">Go Back</a></div>
+                        {% elif object.status == 'Approved' %}
+                        <div class="col-4"><a class="btn btn-outline-primary" href="{% url 'core:active-investors' %}">Go Back</a></div>
+                        {% else %}
+                        <div class="col-4"><a class="btn btn-outline-primary" href="{% url 'core:declined-investors' %}">Go Back</a></div>
+                        {% endif %}
+
+                        <!-- edit status -->
                         {% if object.status == 'Pending' %}
                         <div class="col-4"><a class="btn btn-primary" href="{{ object.get_approve_investor_url }}">Mark as Approved</a></div>
                         <div class="col-4"><a class="btn btn-secondary" href="{{ object.get_declined_investor_url }}">Mark as Declined</a></div>

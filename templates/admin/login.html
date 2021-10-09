@@ -1,40 +1,55 @@
-{% extends 'base.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-<!-- style -->
-{% block head %}
-<style>
-    input[type=text],
-    input[type=password] {
-        width: 40%;
-    }
-    
-    .login-pg {
-        padding: 2em;
-    }
-</style>
-{% endblock %}
+<head>
+    <meta charset="utf-8" />
+    <meta name="author" content="Softnio" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Ideas kenya Admin" />
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
+    <title>Admin | Ideas Kenya</title>
+    <link rel="stylesheet" href="{% static 'assets/css/admin.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/theme.css' %}" />
 
-<!-- body -->
-{% block content %}
+    <style>
+        input[type=text],
+        input[type=password] {
+            width: 50%;
+        }
+        
+        .container {
+            margin: 5em 20em;
+        }
+        
+        img {
+            margin: 2em 0;
+        }
+        
+        form {
+            align-self: center;
+        }
+    </style>
+</head>
 
-<div class="container login-pg">
-    <h4>Login</h4>
-    <form method="POST" action="{% url 'core:login' %}">
-        {% csrf_token %}
-        <div class="username">
-            <span class="errorMsg">{{ form.username.errors }}</span> {{ form.username }}<br>
-        </div>
-        <div class="password">
-            <span class="errorMsg">{{ form.password.errors }}</span> {{ form.password }}<br>
-        </div>
-        <button class="btn btn-primary">Sign In</button>
-    </form>
+<body>
+    <div class="container login-pg">
+        <br>
+        <h4>Login</h4>
+        <form method="POST" action="{% url 'core:login' %}">
+            {% csrf_token %}
+            <div class="username">
+                <span class="errorMsg">{{ form.username.errors }}</span> {{ form.username }}<br>
+            </div>
+            <div class="password">
+                <span class="errorMsg">{{ form.password.errors }}</span> {{ form.password }}<br>
+            </div>
+            <button class="btn btn-primary">Sign In</button>
+        </form>
 
-</div>
+    </div>
 
-<script>
-    header = document.querySelector('#header');
-    header.style.display = 'none';
-</script>
+    <script src="{% static 'assets/js/scripts.js' %}"></script>
+</body>
 
-{% endblock %}
+</html>

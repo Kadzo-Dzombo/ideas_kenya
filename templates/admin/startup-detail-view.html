@@ -109,7 +109,16 @@
 
                     <br><br>
                     <div class="row mb-4">
-                        <div class="col-4"><a class="btn btn-outline-primary" href="{% url 'core:dashboard' %}">Back to Dashboard</a></div>
+                        <!-- back -->
+                        {% if object.status == 'Pending' %}
+                        <div class="col-4"><a class="btn btn-outline-primary" href="{% url 'core:pending-startups' %}">Go Back</a></div>
+                        {% elif object.status == 'Approved' %}
+                        <div class="col-4"><a class="btn btn-outline-primary" href="{% url 'core:active-startups' %}">Go Back</a></div>
+                        {% else %}
+                        <div class="col-4"><a class="btn btn-outline-primary" href="{% url 'core:declined-startups' %}">Go Back</a></div>
+                        {% endif %}
+
+                        <!-- edit status -->
                         {% if object.status == 'Pending' %}
                         <div class="col-4"><a class="btn btn-primary" href="{{ object.get_approve_startup_url }}">Mark as Approved</a></div>
                         <div class="col-4"><a class="btn btn-secondary" href="{{ object.get_decline_startup_url }}">Mark as Declined</a></div>
