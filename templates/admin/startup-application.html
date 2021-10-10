@@ -85,71 +85,76 @@
                             <form action="{% url 'core:register-startup' %}" method="POST">
                                 {% csrf_token %}
                                 <!-- form -->
-                                <div class="fieldWrapper mb-4">
-                                    {{ form.name.errors }}
-                                    <label class="form-label">Startup Name <span class="required">*</span></label> {{ form.name }}
+                                <div class="fieldWrapper row mb-4">
+                                    <div class="col-sm-6">
+                                        <span class="required">{{ form.name.errors }}</span>
+                                        <label class="form-label">Startup Name <span class="required">*</span></label> {{ form.name }}
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <span class="required">{{ form.applicant_email.errors }}</span>
+                                        <label class="form-label">Email Address (of the applicant or startup) <span class="required">*</span></label> {{ form.applicant_email }}
+                                    </div>
                                 </div>
 
                                 <div class="fieldWrapper mb-4">
-                                    {{ form.web_address.errors }}
+                                    <span class="required">{{ form.web_address.errors }}</span>
                                     <label class="form-label">Web address/Pitch</label> {{ form.web_address }}
                                 </div>
 
                                 <div class="fieldWrapper mb-4">
-                                    {{ form.startup_pitch.errors }}
+                                    <span class="required">{{ form.startup_pitch.errors }}</span>
                                     <label class="form-label">Pitch your startup in 140 words <span class="required">*</span></label> {{ form.startup_pitch }}
                                 </div>
 
                                 <div class="fieldWrapper mb-4">
-                                    {{ form.startup_stage.errors }}
+                                    <span class="required">{{ form.startup_stage.errors }}</span>
                                     <label class="form-label">Startup Stage <span class="required">*</span></label> {{ form.startup_stage }}
                                 </div>
 
                                 <div class="fieldWrapper row mb-4">
-                                    {{ form.start_year.errors }}{{ form.start_month.errors }}
                                     <label class="form-label">When did you start? <span class="required">*</span></label>
-                                    <div class="col-sm-6">{{ form.start_year }}</div>
-                                    <div class="col-sm-6">{{ form.start_month }}</div>
+                                    <div class="col-sm-6"><span class="required">{{ form.start_year.errors }}</span> {{ form.start_year }}</div>
+                                    <div class="col-sm-6"><span class="required">{{ form.start_month.errors }}</span> {{ form.start_month }}</div>
                                 </div>
 
                                 <div class="fieldWrapper mb-4">
-                                    {{ form.incorporation.errors }}
+                                    <span class="required">{{ form.incorporation.errors }}</span>
                                     <label class="form-label">Are you incorporated? (Leave blank if no) <span class="required">*</span></label> {{ form.incorporation }}
                                 </div>
 
                                 <div class="fieldWrapper row mb-4">
-                                    {{ form.country.errors }} {{ form.city.errors }}
-                                    <label class="form-label">Location<span class="required">*</span></label>
                                     <div class="col-sm-6">
-                                        <label class="form-label">Country</label> {{ form.country }}
+                                        <span class="required">{{ form.country.errors }}</span>
+                                        <label class="form-label">Country <span class="required">*</span></label> {{ form.country }}
                                     </div>
                                     <div class="col-sm-6">
-                                        <label class="form-label">City</label> {{ form.city }}
+                                        <span class="required">{{ form.city.errors }}</span>
+                                        <label class="form-label">City <span class="required">*</span></label> {{ form.city }}
                                     </div>
                                 </div>
 
                                 <div class="fieldWrapper mb-4">
-                                    {{ form.applicant_title.errors }}
+                                    <span class="required">{{ form.applicant_title.errors }}</span>
                                     <label class="form-label">What is your title at the startup? <span class="required">*</span></label> {{ form.applicant_title }}
                                 </div>
 
                                 <div class="fieldWrapper mb-4">
-                                    {{ form.applicant_role.errors }}
+                                    <span class="required">{{ form.applicant_role.errors }}</span>
                                     <label class="form-label">What is your role at the startup? <span class="required">*</span></label> {{ form.applicant_role }}
                                 </div>
 
                                 <div class="fieldWrapper mb-4">
-                                    {{ form.applicant_bio.errors }}
+                                    <span class="required">{{ form.applicant_bio.errors }}</span>
                                     <label class="form-label">Short bio / Describe yourself <span class="required">*</span></label> {{ form.applicant_bio }}
                                 </div>
 
                                 <div class="fieldWrapper mb-4">
-                                    {{ form.startup_elevator_pitch.errors }}
+                                    <span class="required">{{ form.startup_elevator_pitch.errors }}</span>
                                     <label class="form-label">Startup Elevator Pitch <span class="required">*</span></label> {{ form.startup_elevator_pitch }}
                                 </div>
 
                                 <div class="fieldWrapper mb-4">
-                                    {{ form.motivation.errors }}
+                                    <span class="required">{{ form.motivation.errors }}</span>
                                     <label class="form-label">Why do you want to join this program? <span class="required">*</span></label> {{ form.motivation }}
                                 </div>
 

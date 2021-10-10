@@ -40,7 +40,7 @@ class StartupModelForm(ModelForm):
             'applicant_role': Select(attrs={'class': 'form-control'}),
             'applicant_first_name': TextInput(attrs={'class': 'form-control'}),
             'applicant_last_name': TextInput(attrs={'class': 'form-control'}),
-            'applicant_email': TextInput(attrs={'class': 'form-control'}),
+            'applicant_email': TextInput(attrs={'class': 'form-control', 'placeholder': 'e.g. john@example.com'}),
             'applicant_phone_no': TextInput(attrs={'class': 'form-control'}),
             'linkedin_account': TextInput(attrs={'placeholder': 'https://www.linkedin.com/in/..', 'class': 'form-control'}),
             'applicant_bio': Textarea(attrs={'cols': 10, 'rows': 3, 'placeholder': 'Describe yourself in 300 words', 'class': 'form-control'}),

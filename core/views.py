@@ -58,10 +58,8 @@ def login_page(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, 'Successfully signed in')
+            # messages.success(request, 'Successfully signed in')
             return redirect('core:dashboard')
-        else:
-            messages.warning(request, 'Invalid username or password')
     return render(request, 'admin/login.html', {'form': form})
 
 # registration views
@@ -125,7 +123,7 @@ def startup_approved(request, slug):
     startup_object = get_object_or_404(Startup, slug=slug)
     startup_object.status = 'Approved'
     startup_object.save()
-    messages.success(request, 'Status updated successfully')
+    # messages.success(request, 'Status updated successfully')
     return redirect('/admin/startups/active/')
 
 
@@ -133,7 +131,7 @@ def startup_declined(request, slug):
     startup_object = get_object_or_404(Startup, slug=slug)
     startup_object.status = 'Declined'
     startup_object.save()
-    messages.success(request, 'Status updated successfully')
+    # messages.success(request, 'Status updated successfully')
     return redirect('/admin/startups/declined/')
 
 
@@ -141,7 +139,7 @@ def investor_approved(request, slug):
     investor = get_object_or_404(Investor, slug=slug)
     investor.status = 'Approved'
     investor.save()
-    messages.success(request, 'Status updated successfully')
+    # messages.success(request, 'Status updated successfully')
     return redirect('/admin/investors/active/')
 
 
@@ -149,7 +147,7 @@ def investor_declined(request, slug):
     investor = get_object_or_404(Investor, slug=slug)
     investor.status = 'Declined'
     investor.save()
-    messages.success(request, 'Status updated successfully')
+    # messages.success(request, 'Status updated successfully')
     return redirect('/admin/investors/declined/')
 
 
@@ -162,7 +160,7 @@ def startupUpdateView(request, slug):
     if form.is_valid():
         form.save()
         print('saved')
-        messages.success(request, 'Startup Status successfully updated.')
+        # messages.success(request, 'Startup Status successfully updated.')
         return redirect('core:startup-detail-view', slug=startup_obj.slug)
     print('form not valid')
 
@@ -180,7 +178,7 @@ def investorUpdateView(request, slug):
     if form.is_valid():
         form.save()
         print('saved')
-        messages.success(request, 'Investor Status successfully updated.')
+        # messages.success(request, 'Investor Status successfully updated.')
         return redirect('core:investor-detail-view', slug=investor_obj.slug)
     print('form not valid')
 
@@ -196,15 +194,15 @@ def delete_startup(request, slug):
     startup_object = get_object_or_404(Startup, slug=slug)
     if startup_object.status == 'Approved':
         startup_object.delete()
-        messages.success(request, 'Record was deleted successfully')
+        # messages.success(request, 'Record was deleted successfully')
         return redirect('/admin/startups/active/')
     elif startup_object.status == 'Pending':
         startup_object.delete()
-        messages.success(request, 'Record was deleted successfully')
+        # messages.success(request, 'Record was deleted successfully')
         return redirect('/admin/startups/pending/')
     elif startup_object.status == 'Declined':
         startup_object.delete()
-        messages.success(request, 'Record was deleted successfully')
+        # messages.success(request, 'Record was deleted successfully')
         return redirect('/admin/startups/declined/')
     else:
         return redirect('core:dashboard')
@@ -214,15 +212,15 @@ def delete_investor(request, slug):
     investor_object = get_object_or_404(Investor, slug=slug)
     if investor_object.status == 'Approved':
         investor_object.delete()
-        messages.success(request, 'Record was deleted successfully')
+        # messages.success(request, 'Record was deleted successfully')
         return redirect('/admin/investors/active/')
     elif investor_object.status == 'Pending':
         investor_object.delete()
-        messages.success(request, 'Record was deleted successfully')
+        # messages.success(request, 'Record was deleted successfully')
         return redirect('/admin/investors/pending/')
     elif investor_object.status == 'Pending':
         investor_object.delete()
-        messages.success(request, 'Record was deleted successfully')
+        # messages.success(request, 'Record was deleted successfully')
         return redirect('admin/investors/declined/')
     else:
         return redirect('core:dashboard')
@@ -253,7 +251,7 @@ class InquiryDetailView(DetailView):
 def delete_inquiry(request, slug):
     inquiry_object = get_object_or_404(Contact, slug=slug)
     inquiry_object.delete()
-    messages.success(request, 'Inquiry was deleted successfully')
+    # messages.success(request, 'Inquiry was deleted successfully')
     return redirect('/admin/inquiries/')
 
 
@@ -313,9 +311,9 @@ def export_startup_list(request):
     response = HttpResponse(content_type='text/csv')
 
     writer = csv.writer(response)
-    writer.writerow(['Name', 'Web Address', 'Startup Pitch', 'Startup Stage', 'Startup Month', 'Startup Year', 'Is Incorporated', 'Country', 'City', 'Applicant title', 'Applicant Role', 'Bio', 'Elevator Pitch', 'Motivation', 'Application Date'])
+    writer.writerow(['Name', 'Email', 'Web Address', 'Startup Pitch', 'Startup Stage', 'Startup Month', 'Startup Year', 'Is Incorporated', 'Country', 'City', 'Applicant title', 'Applicant Role', 'Bio', 'Elevator Pitch', 'Motivation', 'Application Date'])
 
-    for startup in Startup.objects.filter(status='Approved').values_list('name', 'web_address', 'startup_pitch', 'startup_stage', 'start_month', 'start_year', 'incorporation', 'country', 'city', 'applicant_title', 'applicant_role', 'applicant_bio', 'startup_elevator_pitch', 'motivation', 'application_date'):
+    for startup in Startup.objects.filter(status='Approved').values_list('name', 'applicant_email', 'web_address', 'startup_pitch', 'startup_stage', 'start_month', 'start_year', 'incorporation', 'country', 'city', 'applicant_title', 'applicant_role', 'applicant_bio', 'startup_elevator_pitch', 'motivation', 'application_date'):
         writer.writerow(startup)
 
     response['Content-Disposition'] = 'attachment; filename="startups.csv"'
