@@ -22,7 +22,7 @@ def landing_page(request):
 
 
 def our_startups(request):
-    return render(request, 'admin/startups.html', {})
+    return render(request, 'startups.html', {})
 
 
 def about_us(request):
