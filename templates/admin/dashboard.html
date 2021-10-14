@@ -2,10 +2,12 @@
 
 <!-- body -->
 {% block content %}
+
 <div class="nk-content">
     <div class="container-fluid">
         <div class="nk-content-inner">
             <div class="nk-content-body">
+                {% if request.user.is_authenticated %}
                 <div class="nk-block-head nk-block-head-sm">
                     <div class="nk-block-between">
                         <div class="nk-block-head-content">
@@ -165,6 +167,12 @@
                         </div>
                     </div>
                 </div>
+                {% else %}
+                <div class="nk-block">
+                    <p class="lead">Not logged in</p>
+                    <a href="{% url 'core:login' %}" class="btn btn-primary">Login</a>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>
