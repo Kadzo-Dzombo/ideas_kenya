@@ -183,6 +183,9 @@ class MailList(models.Model):
     name = models.CharField(max_length=200)
     email = models.CharField(max_length=300)
 
+    def get_delete_object_url(self):
+        return reverse('core:delete_maillist_object', kwargs={'pk': self.pk})
+
 
 class Contact(models.Model):
     user = models.CharField(choices=CONTACT_USER, max_length=100)

@@ -85,27 +85,29 @@ def investor_registration(request):
 
 def dashboard(request):
     user = request.user
-    if user is None:
+    print(user)
+    if user.is_authenticated:
+        contact = Contact.objects.all()
+        active_count = Startup.objects.filter(status='Approved').count()
+        pending_count = Startup.objects.filter(status='Pending').count()
+        declined_count = Startup.objects.filter(status='Declined').count()
+        active_investor_count = Investor.objects.filter(status='Approved').count()
+        pending_investor_count = Investor.objects.filter(status='Pending').count()
+        declined_investor_count = Investor.objects.filter(status='Declined').count()
+        unread_inquiry = Contact.objects.filter(read=False).count()
+        context = {
+            'contact': contact,
+            'active_count': active_count,
+            'pending_count': pending_count,
+            'declined_count': declined_count,
+            'active_investor_count': active_investor_count,
+            'pending_investor_count': pending_investor_count,
+            'declined_investor_count': declined_investor_count,
+            'unread_inquiry': unread_inquiry
+        }
+        return render(request, 'admin/dashboard.html', context)
+    else:
         return redirect('/admin/login/')
-    contact = Contact.objects.all()
-    active_count = Startup.objects.filter(status='Approved').count()
-    pending_count = Startup.objects.filter(status='Pending').count()
-    declined_count = Startup.objects.filter(status='Declined').count()
-    active_investor_count = Investor.objects.filter(status='Approved').count()
-    pending_investor_count = Investor.objects.filter(status='Pending').count()
-    declined_investor_count = Investor.objects.filter(status='Declined').count()
-    unread_inquiry = Contact.objects.filter(read=False).count()
-    context = {
-        'contact': contact,
-        'active_count': active_count,
-        'pending_count': pending_count,
-        'declined_count': declined_count,
-        'active_investor_count': active_investor_count,
-        'pending_investor_count': pending_investor_count,
-        'declined_investor_count': declined_investor_count,
-        'unread_inquiry': unread_inquiry
-    }
-    return render(request, 'admin/dashboard.html', context)
 
 # detail views
 class StartupDetailView(DetailView):
@@ -253,6 +255,13 @@ def delete_inquiry(request, slug):
     inquiry_object.delete()
     # messages.success(request, 'Inquiry was deleted successfully')
     return redirect('/admin/inquiries/')
+
+
+def delete_maillist_object(request, pk):
+    maillist_object = get_object_or_404(MailList, pk=pk)
+    maillist_object.delete()
+    # messages.success(request, 'Inquiry was deleted successfully')
+    return redirect('/admin/mail-list/')
 
 
 # list views active, pending, declined
